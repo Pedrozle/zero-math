@@ -60,10 +60,11 @@ class _EquacaoDetails extends State<EquacaoDetails> {
         break;
       case 5:
         title = "Método do ponto fixo";
-        definicao = "O método do ponto fixo é um método de se calcular pontos fixos de funções.";
-        imgPath1 = "assets/img/met_bissecao/metodo_bissecao.png";
-        imgPath2 = "assets/img/met_bissecao/metodo_bissecao_table.png";
-        imgPath3 = "assets/img/met_bissecao/metodo_bissecao_grafico.png";
+        definicao =
+            "O método do ponto fixo é um método de se calcular pontos fixos de funções.  O ponto fixo p de uma função g(x) é simplesmente um ponto tal que  g(p)=p. Ou sejam é um ponto onde a função g(x) encontra a reta x=y";
+        imgPath1 = "assets/img/met_fixo/met_fixo.jpg";
+        imgPath2 = "assets/img/met_fixo/met_fixo_tabela.jpg";
+        imgPath3 = "assets/img/met_fixo/met_fixo_grafico.jpg";
         explicacao = "";
         break;
     }

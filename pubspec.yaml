@@ -72,10 +72,10 @@ flutter:
         - assets/img/met_bissecao/metodo_bissecao_grafico.png
         - assets/img/met_bissecao/metodo_bissecao_table.png
 
-    # To add assets to your application, add an assets section, like this:
-    # assets:
-    #   - images/a_dot_burr.jpeg
-    #   - images/a_dot_ham.jpeg
+        # Metodo ponto fixo
+        - assets/img/met_fixo/met_fixo.jpg
+        - assets/img/met_fixo/met_fixo_tabela.jpg
+        - assets/img/met_fixo/met_fixo_grafico.jpg
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware

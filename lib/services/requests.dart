@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:zeromath/models/equacao_data.dart';
 
 class Requests {
-  // String endpoint = "http://10.0.2.2";
-  String endpoint = "http://192.168.1.6";
+  String endpoint = "http://10.0.2.2";
+  // String endpoint = "http://192.168.1.6";
 
   calculate(obj) async {
     try {
