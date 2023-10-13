@@ -56,7 +56,7 @@ class _EquacaoState extends State<Equacao> {
       case 2:
         title = "Método de Newton-Raphson";
         definicao =
-            "O método de Newton, desenvolvido por Isaac Newton e Joseph Raphson, tem o objetivo de estimar as raízes de uma função. Para isso, escolhe-se uma aproximação inicial para esta";
+            "O método de Newton, desenvolvido por Isaac Newton e Joseph Raphson, tem o objetivo de estimar as raízes de uma função. Para isso, escolhe-se uma aproximação inicial para esta equação e informa sua equação derivada.";
         break;
       case 3:
         title = "Método da secante";
@@ -345,18 +345,26 @@ class _EquacaoState extends State<Equacao> {
                                 ? Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                      if (widget.typeScreen == 2)
+                                        const Text(
+                                            "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
                                       Text("A equação fornecida contém ${raizes.length} raízes:"),
                                       raizes.isNotEmpty
-                                          ? Row(
-                                              children: raizes
-                                                  .map((e) => Padding(
-                                                        padding: const EdgeInsets.all(12),
-                                                        child: Text(
-                                                          e.toStringAsFixed(2),
-                                                          style: const TextStyle(fontWeight: FontWeight.bold),
-                                                        ),
-                                                      ))
-                                                  .toList(),
+                                          ? Container(
+                                              height: 50,
+                                              child: ListView(
+                                                // This next line does the trick.
+                                                scrollDirection: Axis.horizontal,
+                                                children: raizes
+                                                    .map((e) => Padding(
+                                                          padding: const EdgeInsets.all(12),
+                                                          child: Text(
+                                                            e.toStringAsFixed(2),
+                                                            style: const TextStyle(fontWeight: FontWeight.bold),
+                                                          ),
+                                                        ))
+                                                    .toList(),
+                                              ),
                                             )
                                           : const Text("O intervalo atual não possui raízes"),
                                       const SizedBox(
@@ -383,7 +391,7 @@ class _EquacaoState extends State<Equacao> {
                                                   dataSource: dataRaizes,
                                                   xValueMapper: (EquacaoData data, _) => data.x,
                                                   yValueMapper: (EquacaoData data, _) => 0,
-                                                  animationDuration: 2000,
+                                                  animationDuration: 1000,
                                                   // Enable data label
                                                   dataLabelSettings:
                                                       const DataLabelSettings(isVisible: true, useSeriesColor: true)),

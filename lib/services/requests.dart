@@ -25,6 +25,9 @@ class Requests {
         listY = yDynamic.map((element) => double.parse(element.toString())).toList();
 
         List<dynamic> raizesDynamic = resposta.data["raizes"];
+
+        raizesDynamic = raizesDynamic.map((element) => double.parse(element[0].toString())).toList();
+
         raizes = raizesDynamic.map((element) => double.parse(element.toString())).toList();
 
         List<EquacaoData> dados = [];
