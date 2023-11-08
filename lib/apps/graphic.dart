@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zeromath/apps/methods.dart';
 import 'package:zeromath/models/equacao_data.dart';
 import 'package:zeromath/services/requests.dart';
+import 'package:zeromath/services/metodos.dart';
 import 'package:zeromath/models/request.dart';
 
 import '../constants/cores.constants.dart' as cores;
@@ -22,13 +23,14 @@ class _GraphicState extends State<Graphic> {
   final equacaoController = TextEditingController();
 
   Requests requestsService = Requests();
+  Metodos metodosService = Metodos();
   bool vazio = true;
   bool buscando = false;
 
   List<EquacaoData> dataGraph = [];
 
   geraGraph(obj) async {
-    var result = await requestsService.grafico(obj);
+    var result = metodosService.geraGrafico(obj);
     setState(() {
       vazio = false;
       buscando = false;
