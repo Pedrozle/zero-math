@@ -1,7 +1,8 @@
 class MyRequest {
-  int? tipoEquacao, nroReps;
+  int tipoEquacao, nroReps;
   String? equacao, equacaoDerivada;
-  double? pontoA, pontoB, precisao;
+  double? pontoA, pontoB;
+  double precisao;
 
   MyRequest(
       this.tipoEquacao, this.equacao, this.equacaoDerivada, this.pontoA, this.pontoB, this.precisao, this.nroReps);

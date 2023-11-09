@@ -85,11 +85,6 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 8,
                       ),
-                      const Text(
-                        "Desenvolvido por:\nJoão Pedro & Gianluca",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      )
                     ],
                   )
                 ],

@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:zeromath/apps/equacao_details.dart';
 import 'package:zeromath/models/equacao_data.dart';
 import 'package:zeromath/models/request.dart';
-import 'package:zeromath/services/requests.dart';
+import 'package:zeromath/services/metodos.dart';
 
 import '../constants/cores.constants.dart' as cores;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -19,8 +19,6 @@ class Equacao extends StatefulWidget {
 class _EquacaoState extends State<Equacao> {
   String title = "";
   String definicao = "";
-  String endpoint = "http://10.0.2.2";
-  // String endpoint = "http://192.168.1.7";
 
   final equacaoController = TextEditingController();
   final aController = TextEditingController();
@@ -35,7 +33,7 @@ class _EquacaoState extends State<Equacao> {
   List<EquacaoData> dataRaizes = [];
   List<double> raizes = [];
 
-  Requests requestsService = Requests();
+  Metodos metodosService = Metodos();
 
   TooltipBehavior _tooltipBehavior = TooltipBehavior();
   ZoomPanBehavior _zoomPanBehavior = ZoomPanBehavior();
@@ -76,7 +74,7 @@ class _EquacaoState extends State<Equacao> {
   }
 
   calculate(obj) async {
-    var result = await requestsService.calculate(obj);
+    var result = metodosService.calculate(obj);
     setState(() {
       vazio = false;
       buscando = false;
@@ -196,18 +194,21 @@ class _EquacaoState extends State<Equacao> {
                         const SizedBox(
                           width: 8,
                         ),
-                        Expanded(
-                            child: TextFormField(
-                          controller: bController,
-                          decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText: widget.typeScreen == 2 ? 'Chute Inicial' : 'Limite Final',
-                              hintText: widget.typeScreen == 2 ? "2.5" : "5",
-                              labelStyle: const TextStyle(color: Colors.black)),
-                        ))
+                        widget.typeScreen == 5
+                            ? const Text("")
+                            : Expanded(
+                                child: TextFormField(
+                                controller: bController,
+                                decoration: InputDecoration(
+                                    border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                        borderSide: BorderSide.none),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    labelText: widget.typeScreen == 2 ? 'Chute Inicial' : 'Limite Final',
+                                    hintText: widget.typeScreen == 2 ? "2.5" : "5",
+                                    labelStyle: const TextStyle(color: Colors.black)),
+                              ))
                       ]),
                       const SizedBox(
                         height: 8,
@@ -292,11 +293,11 @@ class _EquacaoState extends State<Equacao> {
                                 }
                                 inicialCtrlr = double.parse(aController.text);
 
-                                if (bController.text.isEmpty) {
+                                if (bController.text.isEmpty && widget.typeScreen != 5) {
                                   _showModal(context, "Faltando informações", "É necessário informar um limite final.");
                                   return;
                                 }
-                                finalCtrlr = double.parse(bController.text);
+                                if (widget.typeScreen != 5) finalCtrlr = double.parse(bController.text);
                               }
 
                               if (precisaoController.text.isEmpty) {
@@ -313,17 +314,26 @@ class _EquacaoState extends State<Equacao> {
                                 maxRepsCtrlr = int.parse(maxRepsController.text);
                               }
 
-                              var obj = MyRequest(widget.typeScreen, equacaoCtrlr, derivadaCtrlr, inicialCtrlr,
-                                  widget.typeScreen == 2 ? chuteInicialCtrlr : finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
+                              MyRequest obj = MyRequest(1, "equacao", "equacaoDerivada", 1, 1, 1, 1);
+
+                              switch (widget.typeScreen) {
+                                case 2:
+                                  obj = MyRequest(widget.typeScreen, equacaoCtrlr, derivadaCtrlr, chuteInicialCtrlr,
+                                      finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
+                                  break;
+
+                                default:
+                                  obj = MyRequest(widget.typeScreen, equacaoCtrlr, derivadaCtrlr, inicialCtrlr,
+                                      finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
+                                  break;
+                              }
 
                               setState(() {
                                 buscando = true;
                                 vazio = true;
                               });
 
-                              debugPrint(obj.toJson().toString());
-
-                              await calculate(obj);
+                              calculate(obj);
                             },
                             child: const Text('Calcular', style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
                           )),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zeromath/apps/methods.dart';
 import 'package:zeromath/models/equacao_data.dart';
-import 'package:zeromath/services/requests.dart';
 import 'package:zeromath/services/metodos.dart';
 import 'package:zeromath/models/request.dart';
 
@@ -22,7 +21,6 @@ class Graphic extends StatefulWidget {
 class _GraphicState extends State<Graphic> {
   final equacaoController = TextEditingController();
 
-  Requests requestsService = Requests();
   Metodos metodosService = Metodos();
   bool vazio = true;
   bool buscando = false;
@@ -170,9 +168,9 @@ class _GraphicState extends State<Graphic> {
                                   return;
                                 }
                                 equacaoCtrl = equacaoController.text;
-                                var obj = MyRequest(1, equacaoCtrl, "", 0, 0, 0, 0);
+                                var obj = MyRequest(1, equacaoCtrl, "", -5, 5, 0, 0);
 
-                                await geraGraph(obj);
+                                geraGraph(obj);
                               },
                               child: const Text('Exibir o gráfico da função',
                                   style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
@@ -205,11 +203,6 @@ class _GraphicState extends State<Graphic> {
                         const SizedBox(
                           height: 8,
                         ),
-                        const Text(
-                          "Desenvolvido por:\nJoão Pedro & Gianluca",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                        )
                       ],
                     )
                   ],

@@ -184,11 +184,6 @@ class _MethodsState extends State<Methods> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Desenvolvido por:\nJoão Pedro & Gianluca",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  )
                 ],
               ),
             )
