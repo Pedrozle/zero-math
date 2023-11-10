@@ -55,28 +55,31 @@ class Metodos {
       y.add(evaluateExpression(equacao.equacao!, i));
     }
 
+    dynamic res;
     List<List<double>> raizes = [];
     List<EquacaoData> dataGraphic = [];
     List<EquacaoData> dataRaizes = [];
 
     switch (equacao.tipoEquacao) {
       case 1:
-        raizes = metBissecao(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metBissecao(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 2:
-        raizes = metNewtonRaph(
+        res = metNewtonRaph(
             equacao.equacao!, equacao.equacaoDerivada!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
       case 3:
-        raizes = metSecante(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metSecante(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 4:
-        raizes = metFalsaPos(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metFalsaPos(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 5:
-        raizes = metPontoFixo(equacao.equacao!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
+        res = metPontoFixo(equacao.equacao!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
     }
+
+    raizes = res[0];
 
     for (final (index, item) in intervalo.indexed) {
       EquacaoData dado = EquacaoData(item, y.elementAt(index));
@@ -90,7 +93,7 @@ class Metodos {
 
     List<double> raiz = raizes.map((e) => e[0]).toList();
 
-    return [dataGraphic, dataRaizes, raiz];
+    return [dataGraphic, dataRaizes, raiz, res[1]];
   }
 
   evaluateExpression(String equacao, double valX) {
@@ -102,15 +105,23 @@ class Metodos {
     return exp.evaluate(EvaluationType.REAL, cm);
   }
 
-  List<List<double>> metBissecao(String eq, double A, double B, int N, double p) {
+  metBissecao(String eq, double A, double B, int N, double p) {
     int i = 0;
     double x = 0;
-    var a = A;
-    var b = B;
+    double x0 = 0;
+    double a = A;
+    double b = B;
     List<List<double>> raizes = [];
+    List<List<double>> tabela = [];
 
-    while (i < N) {
+    double erro = double.infinity;
+
+    while (erro > p && i < N) {
+      List<double> tableRow = [];
       x = (a + b) / 2;
+      tableRow.add(a);
+      tableRow.add(b);
+      tableRow.add(x);
       double exp = evaluateExpression(eq, x);
       if (exp.abs() < p) {
         raizes.add([x, exp]);
@@ -128,10 +139,14 @@ class Metodos {
       } else {
         a = x;
       }
-
+      x0 = x;
+      x = (a + b) / 2;
+      erro = (x - x0).abs();
+      tableRow.add(erro);
+      tabela.add(tableRow);
       i += 1;
     }
-    return raizes;
+    return [raizes, tabela];
   }
 
   List<List<double>> metNewtonRaph(String eq, String deriv, double A, int N, double p) {

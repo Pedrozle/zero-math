@@ -32,6 +32,7 @@ class _EquacaoState extends State<Equacao> {
   List<EquacaoData> dataGraph = [];
   List<EquacaoData> dataRaizes = [];
   List<double> raizes = [];
+  List<List<double>> tabela = [];
 
   Metodos metodosService = Metodos();
 
@@ -81,6 +82,7 @@ class _EquacaoState extends State<Equacao> {
       dataGraph = result[0];
       dataRaizes = result[1];
       raizes = result[2];
+      tabela = result[3];
     });
   }
 
@@ -137,9 +139,7 @@ class _EquacaoState extends State<Equacao> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EquacaoDetails(
-                                    typeScreen: widget.typeScreen,
-                                  )),
+                              builder: (context) => EquacaoDetails(typeScreen: widget.typeScreen, tabela: tabela)),
                         );
                       },
                       icon: const Icon(Icons.info_outline)),

@@ -1,9 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
 class EquacaoDetails extends StatefulWidget {
-  const EquacaoDetails({super.key, required this.typeScreen});
+  const EquacaoDetails({super.key, required this.typeScreen, required this.tabela});
   final int typeScreen;
+  final List<List<double>> tabela;
 
   @override
   State<EquacaoDetails> createState() => _EquacaoDetails();
@@ -144,25 +147,50 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                       "Tabela",
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HeroPhotoViewRouteWrapper(
-                              imageProvider: AssetImage(imgPath2),
-                            ),
+                    SizedBox(
+                        height: 300,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: DataTable(
+                            columns: const [
+                              DataColumn(label: Text('i')),
+                              DataColumn(label: Text('a')),
+                              DataColumn(label: Text('b')),
+                              DataColumn(label: Text('m')),
+                              DataColumn(label: Text('erro')),
+                            ],
+                            rows: [
+                              for (int i = 0; i < widget.tabela.length; i++)
+                                DataRow(cells: [
+                                  DataCell(Text(i.toString())),
+                                  DataCell(Text(widget.tabela[i][0].toString())),
+                                  DataCell(Text(widget.tabela[i][1].toString())),
+                                  DataCell(Text(widget.tabela[i][2].toString())),
+                                  DataCell(Text(widget.tabela[i][3].toString())),
+                                ]),
+                            ],
                           ),
-                        );
-                      },
-                      child: Hero(
-                        tag: "Tabela1",
-                        child: Image.asset(
-                          imgPath2,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    )
+                        )),
+                    // DataTable(
+
+                    //   columns: const [
+                    //     DataColumn(label: Text("i")),
+                    //     DataColumn(label: Text("a")),
+                    //     DataColumn(label: Text("b")),
+                    //     DataColumn(label: Text("m")),
+                    //     DataColumn(label: Text("erro"))
+                    //   ],
+                    //   rows: [
+                    //     for (int i = 0; i < widget.tabela.length; i++)
+                    //       DataRow(cells: [
+                    //         DataCell(Text(i.toString())),
+                    //         DataCell(Text(widget.tabela[i][0].toString())),
+                    //         DataCell(Text(widget.tabela[i][1].toString())),
+                    //         DataCell(Text(widget.tabela[i][2].toString())),
+                    //         DataCell(Text(widget.tabela[i][3].toString())),
+                    //       ])
+                    //   ],
+                    // ),
                   ]),
                 ),
               ),
