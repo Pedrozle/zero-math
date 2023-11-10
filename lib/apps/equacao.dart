@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:zeromath/apps/equacao_details.dart';
+import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao_data.dart';
 import 'package:zeromath/models/request.dart';
 import 'package:zeromath/services/metodos.dart';
@@ -136,10 +137,13 @@ class _EquacaoState extends State<Equacao> {
                   const Text("Definição:"),
                   IconButton(
                       onPressed: () {
+                        DetailsData data = DetailsData(widget.typeScreen, dataGraph, dataRaizes, tabela);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EquacaoDetails(typeScreen: widget.typeScreen, tabela: tabela)),
+                              builder: (context) => EquacaoDetails(
+                                    data: data,
+                                  )),
                         );
                       },
                       icon: const Icon(Icons.info_outline)),
@@ -360,7 +364,7 @@ class _EquacaoState extends State<Equacao> {
                                             "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
                                       Text("A equação fornecida contém ${raizes.length} raízes:"),
                                       raizes.isNotEmpty
-                                          ? Container(
+                                          ? SizedBox(
                                               height: 50,
                                               child: ListView(
                                                 // This next line does the trick.

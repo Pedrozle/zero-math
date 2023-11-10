@@ -1,12 +1,12 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:zeromath/models/details_data.dart';
+import 'package:zeromath/models/equacao_data.dart';
 
 class EquacaoDetails extends StatefulWidget {
-  const EquacaoDetails({super.key, required this.typeScreen, required this.tabela});
-  final int typeScreen;
-  final List<List<double>> tabela;
+  const EquacaoDetails({super.key, required this.data});
+  final DetailsData data;
 
   @override
   State<EquacaoDetails> createState() => _EquacaoDetails();
@@ -23,7 +23,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
   @override
   void initState() {
     super.initState();
-    switch (widget.typeScreen) {
+    switch (widget.data.typeScreen) {
       case 1:
         title = "Método da bisseção";
         definicao =
@@ -104,28 +104,36 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                 child: Center(
                   child: Column(children: [
                     const Text(
-                      "Gráfico",
+                      "Tabela",
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HeroPhotoViewRouteWrapper(
-                              imageProvider: AssetImage(imgPath1),
-                            ),
-                          ),
-                        );
-                      },
-                      child: Hero(
-                        tag: "Gráfico1",
-                        child: Image.asset(
-                          imgPath1,
-                          fit: BoxFit.scaleDown,
+                    SizedBox(
+                      height: 300,
+                      width: MediaQuery.sizeOf(context).width,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: DataTable(
+                          columnSpacing: 20.0,
+                          columns: const [
+                            DataColumn(label: Text('i')),
+                            DataColumn(label: Text('a')),
+                            DataColumn(label: Text('b')),
+                            DataColumn(label: Text('m')),
+                            DataColumn(label: Text('erro')),
+                          ],
+                          rows: [
+                            for (int i = 0; i < widget.data.tabela.length; i++)
+                              DataRow(cells: [
+                                DataCell(Text(i.toString())),
+                                DataCell(Text(double.parse(widget.data.tabela[i][0].toStringAsFixed(5)).toString())),
+                                DataCell(Text(double.parse(widget.data.tabela[i][1].toStringAsFixed(5)).toString())),
+                                DataCell(Text(double.parse(widget.data.tabela[i][2].toStringAsFixed(5)).toString())),
+                                DataCell(Text(double.parse(widget.data.tabela[i][3].toStringAsFixed(5)).toString())),
+                              ]),
+                          ],
                         ),
                       ),
-                    )
+                    ),
                   ]),
                 ),
               ),
@@ -141,91 +149,26 @@ class _EquacaoDetails extends State<EquacaoDetails> {
               padding: const EdgeInsets.all(8),
               child: SizedBox(
                 width: double.infinity,
-                child: Center(
-                  child: Column(children: [
-                    const Text(
-                      "Tabela",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                        height: 300,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: DataTable(
-                            columns: const [
-                              DataColumn(label: Text('i')),
-                              DataColumn(label: Text('a')),
-                              DataColumn(label: Text('b')),
-                              DataColumn(label: Text('m')),
-                              DataColumn(label: Text('erro')),
-                            ],
-                            rows: [
-                              for (int i = 0; i < widget.tabela.length; i++)
-                                DataRow(cells: [
-                                  DataCell(Text(i.toString())),
-                                  DataCell(Text(widget.tabela[i][0].toString())),
-                                  DataCell(Text(widget.tabela[i][1].toString())),
-                                  DataCell(Text(widget.tabela[i][2].toString())),
-                                  DataCell(Text(widget.tabela[i][3].toString())),
-                                ]),
-                            ],
-                          ),
-                        )),
-                    // DataTable(
-
-                    //   columns: const [
-                    //     DataColumn(label: Text("i")),
-                    //     DataColumn(label: Text("a")),
-                    //     DataColumn(label: Text("b")),
-                    //     DataColumn(label: Text("m")),
-                    //     DataColumn(label: Text("erro"))
-                    //   ],
-                    //   rows: [
-                    //     for (int i = 0; i < widget.tabela.length; i++)
-                    //       DataRow(cells: [
-                    //         DataCell(Text(i.toString())),
-                    //         DataCell(Text(widget.tabela[i][0].toString())),
-                    //         DataCell(Text(widget.tabela[i][1].toString())),
-                    //         DataCell(Text(widget.tabela[i][2].toString())),
-                    //         DataCell(Text(widget.tabela[i][3].toString())),
-                    //       ])
-                    //   ],
-                    // ),
-                  ]),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: SizedBox(
-                width: double.infinity,
-                child: Center(
-                  child: Column(children: [
-                    const Text(
-                      "Gráfico",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HeroPhotoViewRouteWrapper(
-                              imageProvider: AssetImage(imgPath3),
-                            ),
-                          ),
-                        );
-                      },
-                      child: Hero(
-                        tag: "Gráfico3",
-                        child: Image.asset(
-                          imgPath3,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    )
-                  ]),
-                ),
+                child: SfCartesianChart(
+                    primaryXAxis: NumericAxis(crossesAt: 0),
+                    primaryYAxis: NumericAxis(crossesAt: 0),
+                    title: ChartTitle(text: title),
+                    series: <ChartSeries>[
+                      LineSeries<EquacaoData, double>(
+                          dataSource: widget.data.dataGraph,
+                          xValueMapper: (EquacaoData data, _) => data.x,
+                          yValueMapper: (EquacaoData data, _) => data.y,
+                          animationDuration: 5000,
+                          // Enable data label
+                          dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                      ScatterSeries<EquacaoData, double>(
+                          dataSource: widget.data.dataRaizes,
+                          xValueMapper: (EquacaoData data, _) => data.x,
+                          yValueMapper: (EquacaoData data, _) => 0,
+                          animationDuration: 1000,
+                          // Enable data label
+                          dataLabelSettings: const DataLabelSettings(isVisible: true, useSeriesColor: true)),
+                    ]),
               ),
             ),
             const SizedBox(
@@ -233,37 +176,6 @@ class _EquacaoDetails extends State<EquacaoDetails> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class HeroPhotoViewRouteWrapper extends StatelessWidget {
-  const HeroPhotoViewRouteWrapper({
-    super.key,
-    required this.imageProvider,
-    this.backgroundDecoration,
-    this.minScale,
-    this.maxScale,
-  });
-
-  final ImageProvider imageProvider;
-  final BoxDecoration? backgroundDecoration;
-  final dynamic minScale;
-  final dynamic maxScale;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints.expand(
-        height: MediaQuery.of(context).size.height,
-      ),
-      child: PhotoView(
-        imageProvider: imageProvider,
-        backgroundDecoration: backgroundDecoration,
-        minScale: minScale,
-        maxScale: maxScale,
-        heroAttributes: const PhotoViewHeroAttributes(tag: "someTag"),
       ),
     );
   }

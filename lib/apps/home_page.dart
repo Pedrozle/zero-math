@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Graphic(
+                                    builder: (context) => const Graphic(
                                           title: "Gráfico da equação"
                                         )),
                               );

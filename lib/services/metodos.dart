@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:math_expressions/math_expressions.dart';
 import 'package:zeromath/models/equacao_data.dart';
 import 'package:zeromath/models/request.dart';
@@ -232,14 +231,14 @@ class Metodos {
     double x = A;
 
     for (int i = 0; i < N; i++) {
-      double x_prox = evaluateExpression(eq, x);
-      double err = (x_prox - x).abs();
+      double xProx = evaluateExpression(eq, x);
+      double err = (xProx - x).abs();
       if (err < p) {
-        raizes.add([x_prox, err]);
+        raizes.add([xProx, err]);
         break;
       }
 
-      x = x_prox;
+      x = xProx;
     }
 
     return raizes;
