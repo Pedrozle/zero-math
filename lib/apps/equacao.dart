@@ -33,7 +33,7 @@ class _EquacaoState extends State<Equacao> {
   List<EquacaoData> dataGraph = [];
   List<EquacaoData> dataRaizes = [];
   List<double> raizes = [];
-  List<List<double>> tabela = [];
+  List<List<dynamic>> tabela = [];
 
   Metodos metodosService = Metodos();
 

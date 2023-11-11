@@ -106,43 +106,37 @@ class Metodos {
 
   metBissecao(String eq, double A, double B, int N, double p) {
     int i = 0;
-    double x = 0;
-    double x0 = 0;
-    double a = A;
-    double b = B;
+    double x = 0, a = A, b = B;
     List<List<double>> raizes = [];
-    List<List<double>> tabela = [];
+    List<List<dynamic>> tabela = [];
 
-    double erro = double.infinity;
-
-    while (erro > p && i < N) {
-      List<double> tableRow = [];
+    tabela.add(['i', 'a', 'b', 'x', 'parada (b-a)/2 < p']);
+    while (i < N && (a < B - 1 || b < A - 1)) {
+      List<dynamic> tableRow = [];
       x = (a + b) / 2;
-      tableRow.add(a);
-      tableRow.add(b);
-      tableRow.add(x);
-      double exp = evaluateExpression(eq, x);
-      if (exp.abs() < p) {
-        raizes.add([x, exp]);
+      tableRow.add(i);
+      tableRow.add(a.toStringAsFixed(3));
+      tableRow.add(b.toStringAsFixed(3));
+      tableRow.add(x.toStringAsFixed(3));
+      double fx = evaluateExpression(eq, x);
+      bool parada = (b - a) / 2 < p;
+      tableRow.add(parada ? 'verdadeiro' : 'falso');
+      tabela.add(tableRow);
+      if (fx == 0 || parada) {
+        raizes.add([x, fx]);
         a = x + 0.1;
         b = B;
-        i = 1;
+        i = 0;
+        tabela.add(['Raiz', 'encontrada', 'raiz:', fx.toStringAsFixed(3), '']);
         continue;
       }
-
-      double eqa = evaluateExpression(eq, a);
-      double eqb = evaluateExpression(eq, x);
-
-      if ((eqa * eqb) < 0) {
+      double fa = evaluateExpression(eq, a);
+      double fb = evaluateExpression(eq, x);
+      if ((fa * fb) < 0) {
         b = x;
       } else {
         a = x;
       }
-      x0 = x;
-      x = (a + b) / 2;
-      erro = (x - x0).abs();
-      tableRow.add(erro);
-      tabela.add(tableRow);
       i += 1;
     }
     return [raizes, tabela];

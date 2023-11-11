@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao_data.dart';
@@ -114,21 +113,21 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                         scrollDirection: Axis.vertical,
                         child: DataTable(
                           columnSpacing: 20.0,
-                          columns: const [
-                            DataColumn(label: Text('i')),
-                            DataColumn(label: Text('a')),
-                            DataColumn(label: Text('b')),
-                            DataColumn(label: Text('m')),
-                            DataColumn(label: Text('erro')),
+                          columns: [
+                            DataColumn(label: Text(widget.data.tabela[0][0])),
+                            DataColumn(label: Text(widget.data.tabela[0][1])),
+                            DataColumn(label: Text(widget.data.tabela[0][2])),
+                            DataColumn(label: Text(widget.data.tabela[0][3])),
+                            DataColumn(label: Text(widget.data.tabela[0][4])),
                           ],
                           rows: [
-                            for (int i = 0; i < widget.data.tabela.length; i++)
+                            for (int i = 1; i < widget.data.tabela.length; i++)
                               DataRow(cells: [
-                                DataCell(Text(i.toString())),
-                                DataCell(Text(double.parse(widget.data.tabela[i][0].toStringAsFixed(5)).toString())),
-                                DataCell(Text(double.parse(widget.data.tabela[i][1].toStringAsFixed(5)).toString())),
-                                DataCell(Text(double.parse(widget.data.tabela[i][2].toStringAsFixed(5)).toString())),
-                                DataCell(Text(double.parse(widget.data.tabela[i][3].toStringAsFixed(5)).toString())),
+                                DataCell(Text(widget.data.tabela[i][0].toString())),
+                                DataCell(Text(widget.data.tabela[i][1].toString())),
+                                DataCell(Text(widget.data.tabela[i][2].toString())),
+                                DataCell(Text(widget.data.tabela[i][3].toString())),
+                                DataCell(Text(widget.data.tabela[i][4].toString())),
                               ]),
                           ],
                         ),
