@@ -332,7 +332,7 @@ class _EquacaoState extends State<Equacao> {
                                   break;
                               }
 
-                              equacao = equacaoCtrlr;
+                              equacao = widget.typeScreen == 2 ? '$equacaoCtrlr|$derivadaCtrlr' : equacaoCtrlr;
 
                               setState(() {
                                 buscando = true;

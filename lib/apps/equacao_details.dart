@@ -31,7 +31,8 @@ class _EquacaoDetails extends State<EquacaoDetails> {
         title = "Método de Newton-Raphson";
         definicao =
             "O método de Newton, desenvolvido por Isaac Newton e Joseph Raphson, tem o objetivo de estimar as raízes de uma função. Para isso, escolhe-se uma aproximação inicial para esta";
-        explicacao = "";
+        explicacao =
+            "Se considerarmos a equação: ${widget.data.equacao.split("|")[0]}, sua derivada: ${widget.data.equacao.split("|")[1]}, chute inicial (xant) = ${widget.data.tabela[1][1]}, critério de parada = abs((xi - xant)/xi) < p, ao aplicarmos estes dados na função de Newton-Raphson encontramos a tabela e o gráfico abaixo";
         break;
       case 3:
         title = "Método da secante";

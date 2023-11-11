@@ -56,6 +56,7 @@ class Metodos {
 
     dynamic res;
     List<List<double>> raizes = [];
+    List<List<dynamic>> tabela = [];
     List<EquacaoData> dataGraphic = [];
     List<EquacaoData> dataRaizes = [];
 
@@ -79,6 +80,7 @@ class Metodos {
     }
 
     raizes = res[0];
+    tabela = res[1];
 
     for (final (index, item) in intervalo.indexed) {
       EquacaoData dado = EquacaoData(item, y.elementAt(index));
@@ -92,7 +94,7 @@ class Metodos {
 
     List<double> raiz = raizes.map((e) => e[0]).toList();
 
-    return [dataGraphic, dataRaizes, raiz, res[1]];
+    return [dataGraphic, dataRaizes, raiz, tabela];
   }
 
   evaluateExpression(String equacao, double valX) {
@@ -110,7 +112,7 @@ class Metodos {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
 
-    tabela.add(['i', 'a', 'b', 'x', 'parada (b-a)/2 < p']);
+    tabela.add(['i', 'a', 'b', 'x', '(b-a)/2 < p']);
     while (i < N && (a < B - 1 || b < A - 1)) {
       List<dynamic> tableRow = [];
       x = (a + b) / 2;
@@ -127,7 +129,7 @@ class Metodos {
         a = x + 0.1;
         b = B;
         i = 0;
-        tabela.add(['Raiz', 'encontrada', 'raiz:', fx.toStringAsFixed(3), '']);
+        tabela.add(['Raiz', 'encontrada', '', 'x:', fx.toStringAsFixed(3)]);
         continue;
       }
       double fa = evaluateExpression(eq, a);
@@ -142,29 +144,40 @@ class Metodos {
     return [raizes, tabela];
   }
 
-  List<List<double>> metNewtonRaph(String eq, String deriv, double A, int N, double p) {
-    int i = 1;
+  metNewtonRaph(String eq, String deriv, double A, int N, double p) {
+    int i = 0;
     double xant = A;
     double xi = 0;
     List<List<double>> raizes = [];
+    List<List<dynamic>> tabela = [];
+
+    tabela.add(['i', 'xant', 'xi', '', 'abs((xi - xant)/xi) < p']);
 
     while (i < N) {
+      List<dynamic> tableRow = [];
       double f = evaluateExpression(eq, xant);
       double df = evaluateExpression(deriv, xant);
       double dx = df != 0 ? f / df : 1;
       xi = xant - dx;
-
-      if ((xi - xant).abs() < p || (xi - xant).abs() == 0) {
+      tableRow.add(i);
+      tableRow.add(xant.toStringAsFixed(3));
+      tableRow.add(xi.toStringAsFixed(3));
+      tableRow.add('');
+      bool parada = (xi - xant).abs() < p;
+      tableRow.add(parada);
+      tabela.add(tableRow);
+      if (parada || (xi - xant).abs() == 0) {
         raizes.add([xi, f]);
         xant = xi;
         i = 0;
+        tabela.add(['Raiz', 'encontrada', '', 'x:', xi.toStringAsFixed(3)]);
         if ((xi - xant).abs() == 0) break;
       }
       xant = xi;
       i += 1;
     }
 
-    return raizes;
+    return [raizes, tabela];
   }
 
   List<List<double>> metSecante(String eq, double A, double B, int N, double p) {
