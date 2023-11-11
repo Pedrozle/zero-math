@@ -1,6 +1,7 @@
 class MyRequest {
   int tipoEquacao, nroReps;
-  String? equacao, equacaoDerivada;
+  String equacao;
+  String? equacaoDerivada;
   double? pontoA, pontoB;
   double precisao;
 

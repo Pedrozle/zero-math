@@ -22,7 +22,7 @@ class Metodos {
     List<double> y = [];
 
     for (var i in intervalo) {
-      y.add(evaluateExpression(equacao.equacao!, i));
+      y.add(evaluateExpression(equacao.equacao, i));
     }
 
     List<EquacaoData> dataGraphic = [];
@@ -51,7 +51,7 @@ class Metodos {
     var y = [];
 
     for (var i in intervalo) {
-      y.add(evaluateExpression(equacao.equacao!, i));
+      y.add(evaluateExpression(equacao.equacao, i));
     }
 
     dynamic res;
@@ -62,20 +62,20 @@ class Metodos {
 
     switch (equacao.tipoEquacao) {
       case 1:
-        res = metBissecao(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metBissecao(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 2:
         res = metNewtonRaph(
-            equacao.equacao!, equacao.equacaoDerivada!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
+            equacao.equacao, equacao.equacaoDerivada!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
       case 3:
-        res = metSecante(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metSecante(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 4:
-        res = metFalsaPos(equacao.equacao!, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        res = metFalsaPos(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 5:
-        res = metPontoFixo(equacao.equacao!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
+        res = metPontoFixo(equacao.equacao, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
     }
 
@@ -164,7 +164,7 @@ class Metodos {
       tableRow.add(xi.toStringAsFixed(3));
       tableRow.add('');
       bool parada = (xi - xant).abs() < p;
-      tableRow.add(parada);
+      tableRow.add(parada ? 'verdadeiro' : 'falso');
       tabela.add(tableRow);
       if (parada || (xi - xant).abs() == 0) {
         raizes.add([xi, f]);
@@ -180,28 +180,38 @@ class Metodos {
     return [raizes, tabela];
   }
 
-  List<List<double>> metSecante(String eq, double A, double B, int N, double p) {
+  metSecante(String eq, double A, double B, int N, double p) {
     int i = 0;
     double a = A;
     double b = B;
     List<List<double>> raizes = [];
+    List<List<dynamic>> tabela = [];
 
+    tabela.add(['i', 'xant', 'xantant', 'xi', 'abs((xi - xant)/xi) < p']);
     while (i < N) {
+      List<dynamic> tableRow = [];
       double fa = evaluateExpression(eq, a);
       double fb = evaluateExpression(eq, b);
       double x = ((b * fa) - (a * fb)) / (fa - fb);
+      tableRow.add(i);
+      tableRow.add(a.toStringAsFixed(3));
+      tableRow.add(b.toStringAsFixed(3));
+      tableRow.add(x.toStringAsFixed(3));
 
       double compare = ((x - a) / x).abs();
+      tableRow.add(compare < p ? 'verdadeiro' : 'falso');
+      tabela.add(tableRow);
       if (compare < p) {
         raizes.add([x, compare]);
-        return raizes;
+        tabela.add(['Raiz', 'encontrada', '', 'x:', compare.toStringAsFixed(3)]);
+        break;
       }
       b = a;
       a = x;
       i += 1;
     }
 
-    return raizes;
+    return [raizes, tabela];
   }
 
   List<List<double>> metFalsaPos(String eq, double A, double B, int N, double p) {

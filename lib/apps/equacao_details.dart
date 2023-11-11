@@ -25,7 +25,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
         definicao =
             "O método da bisseção consiste em dividir o intervalo [a, b] ao meio, obtendo os subintervalos [a, x] e [x, b], e considerar como intervalo de busca o subintervalo em que f tem sinais opostos nos extremos. Em seguida  repete-se o procedimento com o subintervalo de interesse. Após um número finito de subdivisões ou encontramos uma solução ou sabemos que a raiz encontra-se em algum subintervalo [ak, bk].";
         explicacao =
-            "Se considerarmos a equação: ${widget.data.equacao}, a = ${widget.data.tabela[1][1]}, b = ${widget.data.tabela[1][2]}, critério de parada = (b-a)/2 < precisão, ao aplicarmos estes dados na função da bisseção encontramos a tabela e o gráfico abaixo";
+            "Se considerarmos a equação: ${widget.data.equacao}, Limite Inicial (a) = ${widget.data.tabela[1][1]}, Limite Final(b) = ${widget.data.tabela[1][2]}, critério de parada = (b-a)/2 < precisão, ao aplicarmos estes dados na função da bisseção encontramos a tabela e o gráfico abaixo";
         break;
       case 2:
         title = "Método de Newton-Raphson";
@@ -38,7 +38,8 @@ class _EquacaoDetails extends State<EquacaoDetails> {
         title = "Método da secante";
         definicao =
             "O método das secantes é um algoritmo de busca de raízes que usa uma sequência de raízes de linhas secantes para aproximar cada vez melhor a raiz de uma função f";
-        explicacao = "";
+        explicacao =
+            "Se considerarmos a equação: ${widget.data.equacao}, Limite Inicial (a) = ${widget.data.tabela[1][1]}, Limite Final(b) = ${widget.data.tabela[1][2]}, critério de parada = abs((xi - xant)/xi) < p, ao aplicarmos estes dados na função da Secante encontramos a tabela e o gráfico abaixo";
         break;
       case 4:
         title = "Método da falsa posição";
