@@ -112,7 +112,10 @@ class Metodos {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
 
-    tabela.add(['i', 'a', 'b', 'x', '(b-a)/2 < p']);
+    tabela.add(['Equação', 'a', 'b', '', 'parada']);
+    tabela.add([eq, A, B, '', '(b - a) / 2 < p']);
+
+    tabela.add(['i', 'a', 'b', 'x', 'parada']);
     while (i < N && (a < B - 1 || b < A - 1)) {
       List<dynamic> tableRow = [];
       x = (a + b) / 2;
@@ -129,7 +132,7 @@ class Metodos {
         a = x + 0.1;
         b = B;
         i = 0;
-        tabela.add(['Raiz', 'encontrada', '', 'x:', fx.toStringAsFixed(3)]);
+        tabela.add(['Raiz', 'encontrada', '', 'x:', x.toStringAsFixed(3)]);
         continue;
       }
       double fa = evaluateExpression(eq, a);
@@ -151,7 +154,10 @@ class Metodos {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
 
-    tabela.add(['i', 'xant', 'xi', '', 'abs((xi - xant)/xi) < p']);
+    tabela.add(['Equação', 'Derivada', 'a', '', 'parada']);
+    tabela.add([eq, deriv, A, '', 'abs(xi - xant) < p']);
+
+    tabela.add(['i', 'xant', 'xi', '', 'parada']);
 
     while (i < N) {
       List<dynamic> tableRow = [];
@@ -187,7 +193,9 @@ class Metodos {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
 
-    tabela.add(['i', 'xant', 'xantant', 'xi', 'abs((xi - xant)/xi) < p']);
+    tabela.add(['Equação', 'a', 'b', '', 'parada']);
+    tabela.add([eq, A, B, '', 'abs((x - a) / x) < p']);
+    tabela.add(['i', 'xant', 'xantant', 'xi', 'parada']);
     while (i < N) {
       List<dynamic> tableRow = [];
       double fa = evaluateExpression(eq, a);
@@ -214,50 +222,80 @@ class Metodos {
     return [raizes, tabela];
   }
 
-  List<List<double>> metFalsaPos(String eq, double A, double B, int N, double p) {
+  metFalsaPos(String eq, double A, double B, int N, double p) {
     int i = 0;
-    double er = 1;
-    double a = A;
-    double b = B;
-    double x = A;
+    double x = A, a = A, b = B, fa, fb, fx, x0;
     List<List<double>> raizes = [];
+    List<List<dynamic>> tabela = [];
 
-    while (er > p || i <= N) {
-      double x0 = x;
-      double fa = evaluateExpression(eq, a);
-      double fb = evaluateExpression(eq, b);
-      x = a - (fa * (b - a)) / (fb - fa);
+    tabela.add(['Equação', 'a', 'b', '', 'parada']);
+    tabela.add([eq, A, B, '', 'abs(x - x0) / abs(x) < p']);
+    tabela.add(['i', 'a', 'b', 'x', 'parada']);
+    while (i < N) {
+      List<dynamic> tableRow = [];
+      x0 = x;
+      fa = evaluateExpression(eq, a);
+      fb = evaluateExpression(eq, b);
+      x = a - (fa * (b - a) / (fb - fa));
+      fx = evaluateExpression(eq, x);
+      tableRow.add(i);
+      tableRow.add(a.toStringAsFixed(3));
+      tableRow.add(b.toStringAsFixed(3));
+      tableRow.add(x.toStringAsFixed(3));
 
-      double fx = evaluateExpression(eq, x);
-      if ((fx * a) < 0) {
+      if ((fx * fa) < 0) {
         b = x;
       } else {
         a = x;
       }
 
-      er = ((x - x0).abs() / x.abs());
+      bool parada = ((x - x0).abs() / x.abs()) < p;
+      tableRow.add(parada ? 'verdadeiro' : 'falso');
+      tabela.add(tableRow);
+
+      if (parada) {
+        raizes.add([x, fx]);
+        tabela.add(['Raiz', 'encontrada', '', 'x:', x.toStringAsFixed(3)]);
+        break;
+      }
+
       i += 1;
     }
-
-    return raizes;
+    return [raizes, tabela];
   }
 
-  List<List<double>> metPontoFixo(String eq, double A, int N, double p) {
+  metPontoFixo(String eq, double A, int N, double p) {
     List<List<double>> raizes = [];
+    List<List<dynamic>> tabela = [];
+
+    tabela.add(['Equação', 'a', '', '', 'parada']);
+    tabela.add([eq, A, '', '', 'abs(xProx-x) < p']);
+
+    tabela.add(['i', 'x', 'xProx', '', 'parada']);
 
     double x = A;
 
     for (int i = 0; i < N; i++) {
+      List<dynamic> tableRow = [];
       double xProx = evaluateExpression(eq, x);
       double err = (xProx - x).abs();
-      if (err < p) {
+      tableRow.add(i);
+      tableRow.add(x.toStringAsFixed(3));
+      tableRow.add(xProx.toStringAsFixed(3));
+      tableRow.add('');
+      bool parada = err < p;
+      tableRow.add(parada ? 'verdadeiro' : 'falso');
+      tabela.add(tableRow);
+
+      if (parada) {
         raizes.add([xProx, err]);
+        tabela.add(['Raiz', 'encontrada', '', 'x:', x.toStringAsFixed(3)]);
         break;
       }
 
       x = xProx;
     }
 
-    return raizes;
+    return [raizes, tabela];
   }
 }
