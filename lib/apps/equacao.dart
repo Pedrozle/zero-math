@@ -29,7 +29,7 @@ class _EquacaoState extends State<Equacao> {
 
   bool vazio = true;
   bool buscando = false;
-
+  String equacao = "";
   List<EquacaoData> dataGraph = [];
   List<EquacaoData> dataRaizes = [];
   List<double> raizes = [];
@@ -137,7 +137,7 @@ class _EquacaoState extends State<Equacao> {
                   const Text("Definição:"),
                   IconButton(
                       onPressed: () {
-                        DetailsData data = DetailsData(widget.typeScreen, dataGraph, dataRaizes, tabela);
+                        DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -331,6 +331,8 @@ class _EquacaoState extends State<Equacao> {
                                       finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
                                   break;
                               }
+
+                              equacao = equacaoCtrlr;
 
                               setState(() {
                                 buscando = true;
