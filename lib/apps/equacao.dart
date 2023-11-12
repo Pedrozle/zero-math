@@ -135,18 +135,19 @@ class _EquacaoState extends State<Equacao> {
                 padding: const EdgeInsets.only(left: 8),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   const Text("Definição:"),
-                  IconButton(
-                      onPressed: () {
-                        DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EquacaoDetails(
-                                    data: data,
-                                  )),
-                        );
-                      },
-                      icon: const Icon(Icons.info_outline)),
+                  if (!vazio)
+                    IconButton(
+                        onPressed: () {
+                          DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EquacaoDetails(
+                                      data: data,
+                                    )),
+                          );
+                        },
+                        icon: const Icon(Icons.info_outline)),
                 ]),
               ),
               Padding(
@@ -353,73 +354,69 @@ class _EquacaoState extends State<Equacao> {
                         padding: const EdgeInsets.all(8),
                         decoration: const BoxDecoration(
                             color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                        child: buscando
-                            ? Center(
-                                child: LoadingAnimationWidget.prograssiveDots(color: cores.primaryColor, size: 100),
+                        child: !vazio
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (widget.typeScreen == 2)
+                                    const Text(
+                                        "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
+                                  Text("A equação fornecida contém ${raizes.length} raízes:"),
+                                  raizes.isNotEmpty
+                                      ? SizedBox(
+                                          height: 50,
+                                          child: ListView(
+                                            // This next line does the trick.
+                                            scrollDirection: Axis.horizontal,
+                                            children: raizes
+                                                .map((e) => Padding(
+                                                      padding: const EdgeInsets.all(12),
+                                                      child: Text(
+                                                        e.toStringAsFixed(2),
+                                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                          ),
+                                        )
+                                      : const Text("O intervalo atual não possui raízes"),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: SfCartesianChart(
+                                        primaryXAxis: NumericAxis(crossesAt: 0),
+                                        primaryYAxis: NumericAxis(crossesAt: 0),
+                                        title: ChartTitle(text: title),
+                                        tooltipBehavior: _tooltipBehavior,
+                                        zoomPanBehavior: _zoomPanBehavior,
+                                        crosshairBehavior: _crooshairBehavior,
+                                        series: <ChartSeries>[
+                                          LineSeries<EquacaoData, double>(
+                                              dataSource: dataGraph,
+                                              xValueMapper: (EquacaoData data, _) => data.x,
+                                              yValueMapper: (EquacaoData data, _) => data.y,
+                                              animationDuration: 5000,
+                                              // Enable data label
+                                              dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                                          ScatterSeries<EquacaoData, double>(
+                                              dataSource: dataRaizes,
+                                              xValueMapper: (EquacaoData data, _) => data.x,
+                                              yValueMapper: (EquacaoData data, _) => 0,
+                                              animationDuration: 1000,
+                                              // Enable data label
+                                              dataLabelSettings:
+                                                  const DataLabelSettings(isVisible: true, useSeriesColor: true)),
+                                        ]),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Text("Experimente alterar os valores informados!"),
+                                ],
                               )
-                            : !vazio
-                                ? Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      if (widget.typeScreen == 2)
-                                        const Text(
-                                            "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
-                                      Text("A equação fornecida contém ${raizes.length} raízes:"),
-                                      raizes.isNotEmpty
-                                          ? SizedBox(
-                                              height: 50,
-                                              child: ListView(
-                                                // This next line does the trick.
-                                                scrollDirection: Axis.horizontal,
-                                                children: raizes
-                                                    .map((e) => Padding(
-                                                          padding: const EdgeInsets.all(12),
-                                                          child: Text(
-                                                            e.toStringAsFixed(2),
-                                                            style: const TextStyle(fontWeight: FontWeight.bold),
-                                                          ),
-                                                        ))
-                                                    .toList(),
-                                              ),
-                                            )
-                                          : const Text("O intervalo atual não possui raízes"),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: SfCartesianChart(
-                                            primaryXAxis: NumericAxis(crossesAt: 0),
-                                            primaryYAxis: NumericAxis(crossesAt: 0),
-                                            title: ChartTitle(text: title),
-                                            tooltipBehavior: _tooltipBehavior,
-                                            zoomPanBehavior: _zoomPanBehavior,
-                                            crosshairBehavior: _crooshairBehavior,
-                                            series: <ChartSeries>[
-                                              LineSeries<EquacaoData, double>(
-                                                  dataSource: dataGraph,
-                                                  xValueMapper: (EquacaoData data, _) => data.x,
-                                                  yValueMapper: (EquacaoData data, _) => data.y,
-                                                  animationDuration: 5000,
-                                                  // Enable data label
-                                                  dataLabelSettings: const DataLabelSettings(isVisible: true)),
-                                              ScatterSeries<EquacaoData, double>(
-                                                  dataSource: dataRaizes,
-                                                  xValueMapper: (EquacaoData data, _) => data.x,
-                                                  yValueMapper: (EquacaoData data, _) => 0,
-                                                  animationDuration: 1000,
-                                                  // Enable data label
-                                                  dataLabelSettings:
-                                                      const DataLabelSettings(isVisible: true, useSeriesColor: true)),
-                                            ]),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      const Text("Experimente alterar os valores informados!"),
-                                    ],
-                                  )
-                                : const Text("Insira os dados acima para visualizar o gráfico"),
+                            : const Text("Insira os dados acima para visualizar o gráfico"),
                       )
                     ],
                   ))

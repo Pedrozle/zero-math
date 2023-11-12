@@ -144,25 +144,47 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                               width: MediaQuery.sizeOf(context).width,
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
-                                child: DataTable(
-                                  columnSpacing: 20.0,
-                                  columns: [
-                                    DataColumn(label: Text(widget.data.tabela[0][0])),
-                                    DataColumn(label: Text(widget.data.tabela[0][1])),
-                                    DataColumn(label: Text(widget.data.tabela[0][2])),
-                                    DataColumn(label: Text(widget.data.tabela[0][3])),
-                                    DataColumn(label: Text(widget.data.tabela[0][4])),
-                                  ],
-                                  rows: [
-                                    for (int i = 2; i < widget.data.tabela.length - 2; i++)
-                                      DataRow(cells: [
-                                        DataCell(Text(widget.data.tabela[i][0].toString())),
-                                        DataCell(Text(widget.data.tabela[i][1].toString())),
-                                        DataCell(Text(widget.data.tabela[i][2].toString())),
-                                        DataCell(Text(widget.data.tabela[i][3].toString())),
-                                        DataCell(Text(widget.data.tabela[i][4].toString())),
-                                      ]),
-                                  ],
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: DataTable(
+                                    headingRowColor:
+                                        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                                      return Colors.black.withOpacity(0.3);
+                                    }),
+                                    border:
+                                        TableBorder.symmetric(inside: const BorderSide(width: 1, color: Colors.black)),
+                                    columnSpacing: 20.0,
+                                    columns: [
+                                      DataColumn(label: Text(widget.data.tabela[2][0])),
+                                      DataColumn(label: Text(widget.data.tabela[2][1])),
+                                      DataColumn(label: Text(widget.data.tabela[2][2])),
+                                      DataColumn(label: Text(widget.data.tabela[2][3])),
+                                      DataColumn(label: Text(widget.data.tabela[2][4])),
+                                    ],
+                                    rows: [
+                                      for (int i = 3; i < widget.data.tabela.length - 2; i++)
+                                        DataRow(
+                                            color:
+                                                MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                                              // All rows will have the same selected color.
+                                              if (states.contains(MaterialState.selected)) {
+                                                return Theme.of(context).colorScheme.primary.withOpacity(0.08);
+                                              }
+                                              // Even rows will have a grey color.
+                                              if (i.isEven) {
+                                                return Colors.grey.withOpacity(0.2);
+                                              }
+                                              return null; // Use default value for other states and odd rows.
+                                            }),
+                                            cells: [
+                                              DataCell(Text(widget.data.tabela[i][0].toString())),
+                                              DataCell(Text(widget.data.tabela[i][1].toString())),
+                                              DataCell(Text(widget.data.tabela[i][2].toString())),
+                                              DataCell(Text(widget.data.tabela[i][3].toString())),
+                                              DataCell(Text(widget.data.tabela[i][4].toString())),
+                                            ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
