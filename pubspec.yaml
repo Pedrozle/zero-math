@@ -62,22 +62,15 @@ flutter:
     uses-material-design: true
 
     assets:
+        # Homepage
+        - assets/img/homepage.png
+        - assets/img/methods.png
+
         # Detalhes de Zero funcao
         - assets/img/zero_details/primeiro.png
         - assets/img/zero_details/segundo.png
         - assets/img/zero_details/analise.png
         - assets/img/zero_details/refinamento.png
-
-        # Metodo bissecao
-        - assets/img/met_bissecao/metodo_bissecao.png
-        - assets/img/met_bissecao/metodo_bissecao_grafico.png
-        - assets/img/met_bissecao/metodo_bissecao_table.png
-
-        # Metodo ponto fixo
-        - assets/img/met_fixo/met_fixo.jpg
-        - assets/img/met_fixo/met_fixo_tabela.jpg
-        - assets/img/met_fixo/met_fixo_grafico.jpg
-
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
 
