@@ -7,7 +7,6 @@ import 'package:zeromath/models/request.dart';
 import 'package:zeromath/services/metodos.dart';
 
 import '../constants/cores.constants.dart' as cores;
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Equacao extends StatefulWidget {
   const Equacao({super.key, required this.typeScreen});
