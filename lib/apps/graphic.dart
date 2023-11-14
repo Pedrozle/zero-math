@@ -63,6 +63,9 @@ class _GraphicState extends State<Graphic> {
     super.dispose();
   }
 
+
+  // TODO: Inserir um botão que auto insere uma equação como modelo
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

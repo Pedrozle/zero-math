@@ -48,125 +48,115 @@ class _MethodsState extends State<Methods> {
                     borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            SizedBox(
-                                height: 100,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      elevation: 5,
-                                      maximumSize: const Size(170, 150),
-                                      foregroundColor: Colors.white,
-                                      backgroundColor: cores.orangish,
-                                      padding: const EdgeInsets.all(15),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const Equacao(
-                                                typeScreen: 1,
-                                              )),
-                                    );
-                                  },
-                                  child: const Expanded(
-                                    child: Text('Método da bisseção',
-                                        style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
-                                  ),
-                                )),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 150,
-                              child: ElevatedButton(
-                                style: TextButton.styleFrom(
-                                    elevation: 5,
-                                    maximumSize: const Size(170, 100),
-                                    foregroundColor: Colors.white,
-                                    backgroundColor: cores.blueish,
-                                    padding: const EdgeInsets.all(15),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Equacao(
-                                              typeScreen: 3,
-                                            )),
-                                  );
-                                },
-                                child: const Text('Método da secante',
-                                    style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
-                              ),
-                            )
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          children: [
-                            SizedBox(
-                                height: 150,
-                                child: ElevatedButton(
-                                  style: TextButton.styleFrom(
-                                      elevation: 5,
-                                      maximumSize: const Size(170, 100),
-                                      foregroundColor: Colors.white,
-                                      backgroundColor: cores.greenish,
-                                      padding: const EdgeInsets.all(15),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const Equacao(
-                                                typeScreen: 2,
-                                              )),
-                                    );
-                                  },
-                                  child: const Text('Método de Newton-Raphson',
-                                      style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
-                                )),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 100,
-                              child: ElevatedButton(
-                                style: TextButton.styleFrom(
-                                    elevation: 5,
-                                    maximumSize: const Size(170, 150),
-                                    foregroundColor: Colors.white,
-                                    backgroundColor: cores.yellish,
-                                    padding: const EdgeInsets.all(15),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Equacao(
-                                              typeScreen: 4,
-                                            )),
-                                  );
-                                },
-                                child: const Text('Método da falsa posição',
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                    ),
-                                    textAlign: TextAlign.center),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 70,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            elevation: 5,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.orangish,
+                            padding: const EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Equacao(
+                                      typeScreen: 1,
+                                    )),
+                          );
+                        },
+                        child: const Text('Método da Bisseção',
+                            style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     SizedBox(
-                      height: 100,
+                      height: 70,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            elevation: 5,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.blueish,
+                            padding: const EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Equacao(
+                                      typeScreen: 3,
+                                    )),
+                          );
+                        },
+                        child: const Text('Método da Secante',
+                            style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 70,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            elevation: 5,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.yellish,
+                            padding: const EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Equacao(
+                                      typeScreen: 4,
+                                    )),
+                          );
+                        },
+                        child: const Text('Método da Falsa Posição',
+                            style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 70,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            elevation: 5,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.greenish,
+                            padding: const EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Equacao(
+                                      typeScreen: 2,
+                                    )),
+                          );
+                        },
+                        child: const Text('Método de Newton-Raphson',
+                            style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 70,
                       width: double.infinity,
                       child: ElevatedButton(
                         style: TextButton.styleFrom(
@@ -184,12 +174,9 @@ class _MethodsState extends State<Methods> {
                                     )),
                           );
                         },
-                        child: const Text('Método do ponto fixo',
+                        child: const Text('Método do Ponto Fixo',
                             style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                   ],
                 ),
