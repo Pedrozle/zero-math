@@ -135,18 +135,25 @@ class _EquacaoState extends State<Equacao> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   const Text("Definição:"),
                   if (!vazio)
-                    IconButton(
-                        onPressed: () {
-                          DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => EquacaoDetails(
-                                      data: data,
-                                    )),
-                          );
-                        },
-                        icon: const Icon(Icons.info_outline)),
+                    ElevatedButton(
+                      style: TextButton.styleFrom(
+                          elevation: 1,
+                          foregroundColor: Colors.black,
+                          backgroundColor: cores.babyBlue,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                      onPressed: () async {
+                        DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EquacaoDetails(
+                                    data: data,
+                                  )),
+                        );
+                      },
+                      child: const Text('Exibir passo a passo',
+                          style: TextStyle(fontSize: 12), textAlign: TextAlign.center),
+                    )
                 ]),
               ),
               Padding(

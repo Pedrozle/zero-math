@@ -37,14 +37,20 @@ class _HomePageState extends State<HomePage> {
                         "Zero de Funções",
                         style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, fontFamily: 'Palanquin'),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ZeroDetails()),
-                            );
-                          },
-                          icon: const Icon(Icons.info_outline)),
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                            elevation: 1,
+                            foregroundColor: Colors.black,
+                            backgroundColor: cores.background,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ZeroDetails()),
+                          );
+                        },
+                        child: const Text('O que é?', style: TextStyle(fontSize: 12), textAlign: TextAlign.center),
+                      )
                     ],
                   )),
               Container(
