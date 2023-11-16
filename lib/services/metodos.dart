@@ -264,6 +264,8 @@ class Metodos {
     return [raizes, tabela];
   }
 
+// TODO refatorar metodo ponto fixo
+
   metPontoFixo(String eq, double A, int N, double p) {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
