@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:zeromath/apps/methods.dart';
 import 'package:zeromath/models/equacao_data.dart';
@@ -63,9 +65,6 @@ class _GraphicState extends State<Graphic> {
     super.dispose();
   }
 
-
-  // TODO: Inserir um botão que auto insere uma equação como modelo
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,16 +96,65 @@ class _GraphicState extends State<Graphic> {
                   children: [
                     Column(
                       children: [
-                        TextFormField(
-                          controller: equacaoController,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText: 'Equação',
-                              hintText: "x^3 + 3*x",
-                              labelStyle: TextStyle(color: Colors.black)),
+                        SizedBox(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              if (equacaoController.text.isEmpty)
+                                ElevatedButton(
+                                  style: TextButton.styleFrom(
+                                      elevation: 5,
+                                      foregroundColor: Colors.white,
+                                      backgroundColor: cores.primaryColor,
+                                      padding: const EdgeInsets.all(5),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                                  onPressed: () async {
+                                    var equacoes = [
+                                      'x^2-10',
+                                      '3*x^3 -2',
+                                      'x^3 + x^2 -5',
+                                      '-2*x^2 + 3*x +2',
+                                      'sin(x)',
+                                      'cos(x)'
+                                    ];
+
+                                    var equacaoCtrl = equacoes[Random().nextInt(equacoes.length)];
+                                    equacaoController.text = equacaoCtrl;
+                                    var obj = MyRequest(1, equacaoCtrl, "", -5, 5, 0, 0);
+
+                                    geraGraph(obj);
+                                  },
+                                  child: const Text('Inserir modelo',
+                                      style: TextStyle(fontSize: 12), textAlign: TextAlign.center),
+                                ),
+                              TextFormField(
+                                onChanged: (value) => {
+                                  if (value.isEmpty)
+                                    {
+                                      setState(() {
+                                        vazio = true;
+                                      })
+                                    }
+                                  else
+                                    {
+                                      setState(() {
+                                        vazio = false;
+                                      })
+                                    }
+                                },
+                                controller: equacaoController,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                        borderSide: BorderSide.none),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    labelText: 'Equação',
+                                    hintText: "x^3 + 3*x",
+                                    labelStyle: TextStyle(color: Colors.black)),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 16,
