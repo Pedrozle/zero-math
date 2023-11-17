@@ -295,11 +295,15 @@ class _EquacaoState extends State<Equacao> {
                               if (maxRepsController.text.isEmpty) {
                                 reps = 50;
                                 maxRepsController.text = reps.toString();
+                              } else {
+                                reps = int.parse(maxRepsController.text);
                               }
 
                               if (precisaoController.text.isEmpty) {
                                 precisao = 0.001;
                                 precisaoController.text = precisao.toString();
+                              } else {
+                                precisao = double.parse(precisaoController.text);
                               }
 
                               if (equacaoController.text.isEmpty) {

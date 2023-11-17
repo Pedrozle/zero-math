@@ -285,8 +285,8 @@ class Metodos {
       double x = evaluateExpression(it, xAnt);
       tableRow.add(x.toStringAsFixed(3));
       tableRow.add(xAnt.toStringAsFixed(3));
-      
-      bool parada = (x - xAnt).abs() < p && (evaluateExpression(eq, x).abs()) < p;
+
+      bool parada = (x - xAnt).abs() < p;
       tableRow.add(parada ? 'verdadeiro' : 'falso');
       tabela.add(tableRow);
 
@@ -295,6 +295,7 @@ class Metodos {
         tabela.add(['Raiz', 'encontrada', '', 'x:', x.toStringAsFixed(3)]);
         break;
       }
+      xAnt = x;
       i += 1;
     }
 
