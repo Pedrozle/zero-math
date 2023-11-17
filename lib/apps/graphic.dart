@@ -115,7 +115,8 @@ class _GraphicState extends State<Graphic> {
                                       'x^3 + x^2 -5',
                                       '-2*x^2 + 3*x +2',
                                       'sin(x)',
-                                      'cos(x)'
+                                      'cos(x)',
+                                      'x^2 + x-6'
                                     ];
 
                                     var equacaoCtrl = equacoes[Random().nextInt(equacoes.length)];
@@ -150,7 +151,7 @@ class _GraphicState extends State<Graphic> {
                                     fillColor: Colors.white,
                                     filled: true,
                                     labelText: 'Equação',
-                                    hintText: "x^3 + 3*x",
+                                    hintText: "x^2 + x-6",
                                     labelStyle: TextStyle(color: Colors.black)),
                               ),
                             ],
