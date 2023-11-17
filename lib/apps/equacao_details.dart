@@ -141,7 +141,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                             ),
                             SizedBox(
                               height: 300,
-                              width: MediaQuery.sizeOf(context).width,
+                              width: double.infinity,
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
                                 child: SingleChildScrollView(
@@ -162,7 +162,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                                       DataColumn(label: Text(widget.data.tabela[2][4])),
                                     ],
                                     rows: [
-                                      for (int i = 3; i < widget.data.tabela.length - 2; i++)
+                                      for (int i = 3; i < widget.data.tabela.length; i++)
                                         DataRow(
                                             color:
                                                 MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
