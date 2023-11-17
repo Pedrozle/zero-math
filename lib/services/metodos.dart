@@ -65,17 +65,18 @@ class Metodos {
         res = metBissecao(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
         break;
       case 2:
+        res = metSecante(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        break;
+      case 3:
+        res = metFalsaPos(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
+        break;
+      case 4:
         res = metNewtonRaph(
             equacao.equacao, equacao.equacaoDerivada!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
-      case 3:
-        res = metSecante(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
-        break;
-      case 4:
-        res = metFalsaPos(equacao.equacao, equacao.pontoA!, equacao.pontoB!, equacao.nroReps, equacao.precisao);
-        break;
       case 5:
-        res = metPontoFixo(equacao.equacao, equacao.pontoA!, equacao.nroReps, equacao.precisao);
+        res =
+            metPontoFixo(equacao.equacao, equacao.equacaoDerivada!, equacao.pontoA!, equacao.nroReps, equacao.precisao);
         break;
     }
 
@@ -264,38 +265,37 @@ class Metodos {
     return [raizes, tabela];
   }
 
-// TODO refatorar metodo ponto fixo
-
-  metPontoFixo(String eq, double A, int N, double p) {
+  metPontoFixo(String eq, String it, double A, int N, double p) {
     List<List<double>> raizes = [];
     List<List<dynamic>> tabela = [];
 
-    tabela.add(['Equação', 'a', '', '', 'parada']);
-    tabela.add([eq, A, '', '', 'abs(xProx-x) < p']);
+    tabela.add(['Equação', 'Função Iteração', 'a', '', 'parada']);
+    tabela.add([eq, it, A, '', 'abs(x - xAnt) < p']);
 
     tabela.add(['i', 'x', 'xProx', '', 'parada']);
 
-    double x = A;
+    int i = 0;
 
-    for (int i = 0; i < N; i++) {
+    double xAnt = A;
+
+    while (i < N) {
       List<dynamic> tableRow = [];
-      double xProx = evaluateExpression(eq, x);
-      double err = (xProx - x).abs();
       tableRow.add(i);
-      tableRow.add(x.toStringAsFixed(3));
-      tableRow.add(xProx.toStringAsFixed(3));
       tableRow.add('');
-      bool parada = err < p;
+      double x = evaluateExpression(it, xAnt);
+      tableRow.add(x.toStringAsFixed(3));
+      tableRow.add(xAnt.toStringAsFixed(3));
+      
+      bool parada = (x - xAnt).abs() < p && (evaluateExpression(eq, x).abs()) < p;
       tableRow.add(parada ? 'verdadeiro' : 'falso');
       tabela.add(tableRow);
 
       if (parada) {
-        raizes.add([xProx, err]);
+        raizes.add([x, 0]);
         tabela.add(['Raiz', 'encontrada', '', 'x:', x.toStringAsFixed(3)]);
         break;
       }
-
-      x = xProx;
+      i += 1;
     }
 
     return [raizes, tabela];

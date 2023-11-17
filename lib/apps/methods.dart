@@ -92,7 +92,7 @@ class _MethodsState extends State<Methods> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Equacao(
-                                      typeScreen: 3,
+                                      typeScreen: 2,
                                     )),
                           );
                         },
@@ -118,7 +118,7 @@ class _MethodsState extends State<Methods> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Equacao(
-                                      typeScreen: 4,
+                                      typeScreen: 3,
                                     )),
                           );
                         },
@@ -144,7 +144,7 @@ class _MethodsState extends State<Methods> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Equacao(
-                                      typeScreen: 2,
+                                      typeScreen: 4,
                                     )),
                           );
                         },

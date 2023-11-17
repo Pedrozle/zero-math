@@ -53,19 +53,19 @@ class _EquacaoState extends State<Equacao> {
             "O método da bisseção ou método da bissecção é um método de busca de raízes que bissecta repetidamente um intervalo e então seleciona um subintervalo contendo a raiz para processamento adicional.";
         break;
       case 2:
-        title = "Método de Newton-Raphson";
-        definicao =
-            "O método de Newton, desenvolvido por Isaac Newton e Joseph Raphson, tem o objetivo de estimar as raízes de uma função. Para isso, escolhe-se uma aproximação inicial para esta equação e informa sua equação derivada.";
-        break;
-      case 3:
         title = "Método da secante";
         definicao =
             "O método das secantes é um algoritmo de busca de raízes que usa uma sequência de raízes de linhas secantes para aproximar cada vez melhor a raiz de uma função f";
         break;
-      case 4:
+      case 3:
         title = "Método da falsa posição";
         definicao =
             "O método da posição falsa ou regula falsi é um método numérico usado para resolver equações lineares definidas em um intervalo [a, b], partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b";
+        break;
+      case 4:
+        title = "Método de Newton-Raphson";
+        definicao =
+            "O método de Newton, desenvolvido por Isaac Newton e Joseph Raphson, tem o objetivo de estimar as raízes de uma função. Para isso, escolhe-se uma aproximação inicial para esta equação e informa sua equação derivada.";
         break;
       case 5:
         title = "Método do ponto fixo";
@@ -175,52 +175,6 @@ class _EquacaoState extends State<Equacao> {
                       borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                   child: Column(
                     children: [
-                      TextFormField(
-                        controller: equacaoController,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'Equação',
-                            hintText: "x^3 + 3*x",
-                            labelStyle: TextStyle(color: Colors.black)),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                          controller: aController,
-                          decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText: widget.typeScreen == 2 ? 'Equação Derivada' : 'Limite Inicial',
-                              hintText: widget.typeScreen == 2 ? "3*x^2 + 3" : "-5",
-                              labelStyle: const TextStyle(color: Colors.black)),
-                        )),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        widget.typeScreen == 5
-                            ? const Text("")
-                            : Expanded(
-                                child: TextFormField(
-                                controller: bController,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                                        borderSide: BorderSide.none),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText: widget.typeScreen == 2 ? 'Chute Inicial' : 'Limite Final',
-                                    hintText: widget.typeScreen == 2 ? "2.5" : "5",
-                                    labelStyle: const TextStyle(color: Colors.black)),
-                              ))
-                      ]),
                       const SizedBox(
                         height: 8,
                       ),
@@ -258,6 +212,65 @@ class _EquacaoState extends State<Equacao> {
                       const SizedBox(
                         height: 8,
                       ),
+                      TextFormField(
+                        controller: equacaoController,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                            fillColor: Colors.white,
+                            filled: true,
+                            labelText: 'Equação',
+                            hintText: "x^2 + x-6",
+                            labelStyle: TextStyle(color: Colors.black)),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(children: [
+                        Expanded(
+                            child: TextFormField(
+                          controller: aController,
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                              fillColor: Colors.white,
+                              filled: true,
+                              labelText: widget.typeScreen == 4
+                                  ? 'Equação Derivada'
+                                  : widget.typeScreen == 5
+                                      ? 'Função de Iteração'
+                                      : 'Limite  inicial',
+                              hintText: widget.typeScreen == 4
+                                  ? '2*x + 1'
+                                  : widget.typeScreen == 5
+                                      ? '6-x^2'
+                                      : '-5',
+                              labelStyle: const TextStyle(color: Colors.black)),
+                        )),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Expanded(
+                            child: TextFormField(
+                          controller: bController,
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                              fillColor: Colors.white,
+                              filled: true,
+                              labelText:
+                                  widget.typeScreen == 4 || widget.typeScreen == 5 ? 'Chute Inicial' : 'Limite Final',
+                              hintText: widget.typeScreen == 4
+                                  ? "2.5"
+                                  : widget.typeScreen == 5
+                                      ? '1.5'
+                                      : "5",
+                              labelStyle: const TextStyle(color: Colors.black)),
+                        ))
+                      ]),
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Row(
                         children: [
                           Expanded(
@@ -269,77 +282,91 @@ class _EquacaoState extends State<Equacao> {
                                 padding: const EdgeInsets.all(15),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                             onPressed: () async {
-                              var equacaoCtrlr = "";
-                              var derivadaCtrlr = "";
-                              var inicialCtrlr = 0.0;
-                              var finalCtrlr = 0.0;
-                              var chuteInicialCtrlr = 0.0;
-                              var precisaoCtrlr = 0.0;
-                              var maxRepsCtrlr = 0;
+                              int reps = 0;
+                              double precisao = 0;
+                              String equacao = '';
+                              String funcao = '';
+                              double chute = 0;
+                              double pontoA = 0;
+                              double pontoB = 0;
+
+                              MyRequest obj = MyRequest(1, "equacao", "equacaoDerivada", 1, 1, 1, 1);
+
+                              if (maxRepsController.text.isEmpty) {
+                                reps = 50;
+                                maxRepsController.text = reps.toString();
+                              }
+
+                              if (precisaoController.text.isEmpty) {
+                                precisao = 0.001;
+                                precisaoController.text = precisao.toString();
+                              }
 
                               if (equacaoController.text.isEmpty) {
                                 _showModal(context, "Faltando informações", "Não é possível calcular sem a equação.");
                                 return;
                               }
-                              equacaoCtrlr = equacaoController.text;
 
-                              if (widget.typeScreen == 2) {
-                                if (aController.text.isEmpty) {
-                                  _showModal(context, "Faltando informações",
-                                      "O método de Newton-Raphson exige uma equação derivada.");
-                                  return;
-                                }
-                                derivadaCtrlr = aController.text;
-
-                                if (bController.text.isEmpty) {
-                                  _showModal(context, "Faltando informações", "É necessário informar o chute inicial.");
-                                  return;
-                                }
-                                chuteInicialCtrlr = double.parse(bController.text);
-                              } else {
-                                if (aController.text.isEmpty) {
-                                  _showModal(
-                                      context, "Faltando informações", "É necessário informar um limite inicial.");
-                                  return;
-                                }
-                                inicialCtrlr = double.parse(aController.text);
-
-                                if (bController.text.isEmpty && widget.typeScreen != 5) {
-                                  _showModal(context, "Faltando informações", "É necessário informar um limite final.");
-                                  return;
-                                }
-                                if (widget.typeScreen != 5) finalCtrlr = double.parse(bController.text);
-                              }
-
-                              if (precisaoController.text.isEmpty) {
-                                precisaoController.text = "0.001";
-                                precisaoCtrlr = 0.001;
-                              } else {
-                                precisaoCtrlr = double.parse(precisaoController.text);
-                              }
-
-                              if (maxRepsController.text.isEmpty) {
-                                maxRepsController.text = "50";
-                                maxRepsCtrlr = 50;
-                              } else {
-                                maxRepsCtrlr = int.parse(maxRepsController.text);
-                              }
-
-                              MyRequest obj = MyRequest(1, "equacao", "equacaoDerivada", 1, 1, 1, 1);
+                              equacao = equacaoController.text;
 
                               switch (widget.typeScreen) {
-                                case 2:
-                                  obj = MyRequest(widget.typeScreen, equacaoCtrlr, derivadaCtrlr, chuteInicialCtrlr,
-                                      finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
+                                case 4:
+                                  if (aController.text.isEmpty) {
+                                    _showModal(context, "Faltando informações",
+                                        "O método de Newton-Raphson exige uma equação derivada");
+                                    return;
+                                  }
+
+                                  funcao = aController.text;
+
+                                  if (bController.text.isEmpty) {
+                                    _showModal(
+                                        context, "Faltando informações", "É necessário informar o chute inicial.");
+                                    return;
+                                  }
+                                  chute = double.parse(bController.text);
+
+                                  obj = MyRequest(2, equacao, funcao, chute, 0, precisao, reps);
+                                  break;
+
+                                case 5:
+                                  if (aController.text.isEmpty) {
+                                    _showModal(context, "Faltando informações",
+                                        "O método do Ponto Fixo exige uma função de Iteração");
+                                    return;
+                                  }
+
+                                  funcao = aController.text;
+
+                                  if (bController.text.isEmpty) {
+                                    _showModal(
+                                        context, "Faltando informações", "É necessário informar o chute inicial.");
+                                    return;
+                                  }
+                                  chute = double.parse(bController.text);
+
+                                  obj = MyRequest(5, equacao, funcao, chute, 0, precisao, reps);
                                   break;
 
                                 default:
-                                  obj = MyRequest(widget.typeScreen, equacaoCtrlr, derivadaCtrlr, inicialCtrlr,
-                                      finalCtrlr, precisaoCtrlr, maxRepsCtrlr);
+                                  if (aController.text.isEmpty) {
+                                    _showModal(
+                                        context, "Faltando informações", "É necessário inserir o intervalo inicial");
+                                    return;
+                                  }
+
+                                  pontoA = double.parse(aController.text);
+
+                                  if (bController.text.isEmpty) {
+                                    _showModal(
+                                        context, "Faltando informações", "É necessário inserir o intervalo final");
+                                    return;
+                                  }
+                                  pontoB = double.parse(bController.text);
+
+                                  obj = MyRequest(5, equacao, '', pontoA, pontoB, precisao, reps);
                                   break;
                               }
-
-                              equacao = widget.typeScreen == 2 ? '$equacaoCtrlr|$derivadaCtrlr' : equacaoCtrlr;
 
                               setState(() {
                                 buscando = true;
