@@ -9,8 +9,6 @@ import 'package:zeromath/models/request.dart';
 import '../constants/cores.constants.dart' as cores;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 class Graphic extends StatefulWidget {
   const Graphic({super.key, required this.title});
 
@@ -165,37 +163,33 @@ class _GraphicState extends State<Graphic> {
                           padding: const EdgeInsets.all(8),
                           decoration: const BoxDecoration(
                               color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                          child: buscando
-                              ? Center(
-                                  child: LoadingAnimationWidget.prograssiveDots(color: cores.primaryColor, size: 100),
-                                )
-                              : !vazio
-                                  ? Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        SizedBox(
-                                          width: double.infinity,
-                                          child: SfCartesianChart(
-                                              primaryXAxis: NumericAxis(crossesAt: 0),
-                                              primaryYAxis: NumericAxis(crossesAt: 0),
-                                              title: ChartTitle(text: "Gráfico da Equação"),
-                                              // crosshairBehavior: _crooshairBehavior,
-                                              series: <ChartSeries>[
-                                                LineSeries<EquacaoData, double>(
-                                                    dataSource: dataGraph,
-                                                    xValueMapper: (EquacaoData data, _) => data.x,
-                                                    yValueMapper: (EquacaoData data, _) => data.y,
-                                                    animationDuration: 5000,
-                                                    // Enable data label
-                                                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
-                                              ]),
-                                        )
-                                      ],
+                          child: !vazio
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: SfCartesianChart(
+                                          primaryXAxis: NumericAxis(crossesAt: 0),
+                                          primaryYAxis: NumericAxis(crossesAt: 0),
+                                          title: ChartTitle(text: "Gráfico da Equação"),
+                                          // crosshairBehavior: _crooshairBehavior,
+                                          series: <ChartSeries>[
+                                            LineSeries<EquacaoData, double>(
+                                                dataSource: dataGraph,
+                                                xValueMapper: (EquacaoData data, _) => data.x,
+                                                yValueMapper: (EquacaoData data, _) => data.y,
+                                                animationDuration: 5000,
+                                                // Enable data label
+                                                dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                                          ]),
                                     )
-                                  : const Text("Insira os dados acima para visualizar o gráfico"),
+                                  ],
+                                )
+                              : const Text("Insira os dados acima para visualizar o gráfico"),
                         ),
                         const SizedBox(
                           height: 16,
