@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'package:zeromath/ad_state.dart';
 
 class ZeroDetails extends StatefulWidget {
   const ZeroDetails({super.key});
@@ -8,6 +11,26 @@ class ZeroDetails extends StatefulWidget {
 }
 
 class _ZeroDetails extends State<ZeroDetails> {
+  BannerAd banner =
+      BannerAd(size: AdSize.banner, adUnitId: "", listener: const BannerAdListener(), request: const AdRequest())
+        ..load();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+    adState.initialization.then((status) => {
+          setState(() {
+            banner = BannerAd(
+              adUnitId: adState.bannerAdUnitId,
+              size: AdSize.banner,
+              request: const AdRequest(),
+              listener: adState.adListener,
+            )..load();
+          })
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,12 +38,10 @@ class _ZeroDetails extends State<ZeroDetails> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Zero de Funções"),
       ),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(
-              height: 16,
-            ),
+            const Spacer(),
             const Padding(
               padding: EdgeInsets.only(left: 8),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -94,6 +115,10 @@ class _ZeroDetails extends State<ZeroDetails> {
             ),
             const SizedBox(
               height: 16,
+            ),
+            Container(
+              height: 60,
+              child: AdWidget(ad: banner),
             ),
           ],
         ),
