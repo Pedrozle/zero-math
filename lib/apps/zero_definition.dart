@@ -116,7 +116,7 @@ class _ZeroDetails extends State<ZeroDetails> {
             const SizedBox(
               height: 16,
             ),
-            Container(
+            SizedBox(
               height: 60,
               child: AdWidget(ad: banner),
             ),

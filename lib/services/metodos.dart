@@ -38,7 +38,7 @@ class Metodos {
     double inicio = 0;
     double fim = 0;
 
-    if (equacao.tipoEquacao == 2 || equacao.tipoEquacao == 5) {
+    if (equacao.tipoEquacao == 4 || equacao.tipoEquacao == 5) {
       inicio = -5;
       fim = 5;
     } else {
