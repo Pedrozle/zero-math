@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:zeromath/ad_state.dart';
 import 'package:zeromath/apps/equacao_details.dart';
 import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao_data.dart';
@@ -39,6 +42,26 @@ class _EquacaoState extends State<Equacao> {
   TooltipBehavior _tooltipBehavior = TooltipBehavior();
   ZoomPanBehavior _zoomPanBehavior = ZoomPanBehavior();
   CrosshairBehavior _crooshairBehavior = CrosshairBehavior();
+
+  BannerAd banner =
+      BannerAd(size: AdSize.banner, adUnitId: "", listener: const BannerAdListener(), request: const AdRequest())
+        ..load();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+    adState.initialization.then((status) => {
+          setState(() {
+            banner = BannerAd(
+              adUnitId: adState.bannerAdUnitId,
+              size: AdSize.banner,
+              request: const AdRequest(),
+              listener: adState.adListener,
+            )..load();
+          })
+        });
+  }
 
   @override
   void initState() {
@@ -330,7 +353,7 @@ class _EquacaoState extends State<Equacao> {
                                   }
                                   chute = double.parse(bController.text);
 
-                                  obj = MyRequest(2, equacao, funcao, chute, 0, precisao, reps);
+                                  obj = MyRequest(4, equacao, funcao, chute, 0, precisao, reps);
                                   break;
 
                                 case 5:
@@ -368,7 +391,7 @@ class _EquacaoState extends State<Equacao> {
                                   }
                                   pontoB = double.parse(bController.text);
 
-                                  obj = MyRequest(5, equacao, '', pontoA, pontoB, precisao, reps);
+                                  obj = MyRequest(widget.typeScreen, equacao, '', pontoA, pontoB, precisao, reps);
                                   break;
                               }
 
@@ -453,7 +476,15 @@ class _EquacaoState extends State<Equacao> {
                                   const Text("Experimente alterar os valores informados!"),
                                 ],
                               )
-                            : const Text("Insira os dados acima para visualizar o gráfico"),
+                            : Column(
+                                children: [
+                                  const Text("Insira os dados acima para visualizar o gráfico"),
+                                  SizedBox(
+                                    height: 60,
+                                    child: AdWidget(ad: banner),
+                                  ),
+                                ],
+                              ),
                       )
                     ],
                   ))

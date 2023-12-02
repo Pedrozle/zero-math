@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:zeromath/ad_state.dart';
 import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao_data.dart';
 import '../constants/cores.constants.dart' as cores;
@@ -16,6 +19,26 @@ class _EquacaoDetails extends State<EquacaoDetails> {
   String title = "";
   String definicao = "";
   String explicacao = "";
+
+  BannerAd banner =
+      BannerAd(size: AdSize.banner, adUnitId: "", listener: const BannerAdListener(), request: const AdRequest())
+        ..load();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+    adState.initialization.then((status) => {
+          setState(() {
+            banner = BannerAd(
+              adUnitId: adState.bannerAdUnitId,
+              size: AdSize.banner,
+              request: const AdRequest(),
+              listener: adState.adListener,
+            )..load();
+          })
+        });
+  }
 
   @override
   void initState() {
@@ -82,9 +105,8 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                    color: cores.babyBlue,
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                decoration:
+                    const BoxDecoration(color: cores.babyBlue, borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 child: Container(
                   decoration:
                       const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -223,6 +245,10 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                     )
                   ]),
                 )),
+            SizedBox(
+              height: 60,
+              child: AdWidget(ad: banner),
+            ),
           ],
         ),
       ),
