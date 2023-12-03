@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:zeromath/ad_state.dart';
 import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao_data.dart';
-import '../constants/cores.constants.dart' as cores;
 
 class EquacaoDetails extends StatefulWidget {
   const EquacaoDetails({super.key, required this.data});
@@ -81,7 +81,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text("Detalhes da Função"),
       ),
       body: SingleChildScrollView(
@@ -98,15 +98,16 @@ class _EquacaoDetails extends State<EquacaoDetails> {
               padding: const EdgeInsets.only(left: 24, right: 8),
               child: Text(
                 definicao,
-                style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54),
+                style: const TextStyle(fontStyle: FontStyle.italic),
               ),
             ),
             Container(
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.all(8),
-                decoration:
-                    const BoxDecoration(color: cores.babyBlue, borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius: const BorderRadius.all(Radius.circular(15.0))),
                 child: Container(
                   decoration:
                       const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -126,9 +127,12 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                           child: Column(children: [
                             const Text(
                               "Dados",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
                             ),
                             DataTable(
+                              decoration: const BoxDecoration(
+                                color: Colors.black54,
+                              ),
                               columnSpacing: 20.0,
                               columns: [
                                 DataColumn(label: Text(widget.data.tabela[0][0])),
@@ -159,7 +163,7 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                           child: Column(children: [
                             const Text(
                               "Tabela",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
                             ),
                             SizedBox(
                               height: 300,
@@ -169,6 +173,9 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: DataTable(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.black54,
+                                    ),
                                     headingRowColor:
                                         MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
                                       return Colors.black.withOpacity(0.3);
@@ -218,26 +225,29 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                       padding: const EdgeInsets.all(8),
                       child: SizedBox(
                         width: double.infinity,
-                        child: SfCartesianChart(
-                            primaryXAxis: NumericAxis(crossesAt: 0),
-                            primaryYAxis: NumericAxis(crossesAt: 0),
-                            title: ChartTitle(text: title),
-                            series: <ChartSeries>[
-                              LineSeries<EquacaoData, double>(
-                                  dataSource: widget.data.dataGraph,
-                                  xValueMapper: (EquacaoData data, _) => data.x,
-                                  yValueMapper: (EquacaoData data, _) => data.y,
-                                  animationDuration: 5000,
-                                  // Enable data label
-                                  dataLabelSettings: const DataLabelSettings(isVisible: true)),
-                              ScatterSeries<EquacaoData, double>(
-                                  dataSource: widget.data.dataRaizes,
-                                  xValueMapper: (EquacaoData data, _) => data.x,
-                                  yValueMapper: (EquacaoData data, _) => 0,
-                                  animationDuration: 1000,
-                                  // Enable data label
-                                  dataLabelSettings: const DataLabelSettings(isVisible: true, useSeriesColor: true)),
-                            ]),
+                        child: SfTheme(
+                          data: SfThemeData(chartThemeData: SfChartThemeData(plotAreaBackgroundColor: Colors.white)),
+                          child: SfCartesianChart(
+                              primaryXAxis: NumericAxis(crossesAt: 0),
+                              primaryYAxis: NumericAxis(crossesAt: 0),
+                              title: ChartTitle(text: title),
+                              series: <ChartSeries>[
+                                LineSeries<EquacaoData, double>(
+                                    dataSource: widget.data.dataGraph,
+                                    xValueMapper: (EquacaoData data, _) => data.x,
+                                    yValueMapper: (EquacaoData data, _) => data.y,
+                                    animationDuration: 5000,
+                                    // Enable data label
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                                ScatterSeries<EquacaoData, double>(
+                                    dataSource: widget.data.dataRaizes,
+                                    xValueMapper: (EquacaoData data, _) => data.x,
+                                    yValueMapper: (EquacaoData data, _) => 0,
+                                    animationDuration: 1000,
+                                    // Enable data label
+                                    dataLabelSettings: const DataLabelSettings(isVisible: true, useSeriesColor: true)),
+                              ]),
+                        ),
                       ),
                     ),
                     const SizedBox(

@@ -18,17 +18,11 @@ class _MethodsState extends State<Methods> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(widget.title),
       ),
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/img/methods.png'),
-            fit: BoxFit.fitWidth,
-            opacity: 0.2,
-          )),
           child: Column(
             children: [
               const Spacer(),
@@ -43,9 +37,10 @@ class _MethodsState extends State<Methods> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                    color: cores.babyBlue,
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius:
+                        const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                 child: Column(
                   children: [
                     const SizedBox(

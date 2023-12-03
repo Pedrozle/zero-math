@@ -8,6 +8,7 @@ import 'package:zeromath/models/request.dart';
 
 import '../constants/cores.constants.dart' as cores;
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 
 class Graphic extends StatefulWidget {
   const Graphic({super.key, required this.title});
@@ -66,8 +67,9 @@ class _GraphicState extends State<Graphic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(widget.title),
       ),
       body: Align(
@@ -87,8 +89,8 @@ class _GraphicState extends State<Graphic> {
                 width: double.infinity,
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                    color: cores.babyBlue,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                 child: Column(
                   children: [
@@ -142,15 +144,14 @@ class _GraphicState extends State<Graphic> {
                                     }
                                 },
                                 controller: equacaoController,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                                        borderSide: BorderSide.none),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText: 'Equação',
-                                    hintText: "x^2 + x-6",
-                                    labelStyle: TextStyle(color: Colors.black)),
+                                decoration: InputDecoration(
+                                  border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                                  fillColor: Theme.of(context).colorScheme.tertiary,
+                                  filled: true,
+                                  labelText: 'Equação',
+                                  hintText: "x^2 + x-6",
+                                ),
                               ),
                             ],
                           ),
@@ -172,20 +173,24 @@ class _GraphicState extends State<Graphic> {
                                     ),
                                     SizedBox(
                                       width: double.infinity,
-                                      child: SfCartesianChart(
-                                          primaryXAxis: NumericAxis(crossesAt: 0),
-                                          primaryYAxis: NumericAxis(crossesAt: 0),
-                                          title: ChartTitle(text: "Gráfico da Equação"),
-                                          // crosshairBehavior: _crooshairBehavior,
-                                          series: <ChartSeries>[
-                                            LineSeries<EquacaoData, double>(
-                                                dataSource: dataGraph,
-                                                xValueMapper: (EquacaoData data, _) => data.x,
-                                                yValueMapper: (EquacaoData data, _) => data.y,
-                                                animationDuration: 5000,
-                                                // Enable data label
-                                                dataLabelSettings: const DataLabelSettings(isVisible: true)),
-                                          ]),
+                                      child: SfTheme(
+                                        data: SfThemeData(
+                                            chartThemeData: SfChartThemeData(plotAreaBackgroundColor: Colors.white)),
+                                        child: SfCartesianChart(
+                                            primaryXAxis: NumericAxis(crossesAt: 0),
+                                            primaryYAxis: NumericAxis(crossesAt: 0),
+                                            title: ChartTitle(text: "Gráfico da Equação"),
+                                            // crosshairBehavior: _crooshairBehavior,
+                                            series: <ChartSeries>[
+                                              LineSeries<EquacaoData, double>(
+                                                  dataSource: dataGraph,
+                                                  xValueMapper: (EquacaoData data, _) => data.x,
+                                                  yValueMapper: (EquacaoData data, _) => data.y,
+                                                  animationDuration: 5000,
+                                                  // Enable data label
+                                                  dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                                            ]),
+                                      ),
                                     )
                                   ],
                                 )

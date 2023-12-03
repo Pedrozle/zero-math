@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Spacer(),
               Container(
-                  decoration: const BoxDecoration(
-                      color: cores.babyBlue,
+                  decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                   padding: const EdgeInsets.only(top: 12, left: 8, right: 8),
                   alignment: Alignment.centerLeft,
@@ -56,9 +56,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                  color: cores.babyBlue,
-                ),
+                color: Theme.of(context).colorScheme.secondary,
                 child: Column(
                   children: [
                     Column(
