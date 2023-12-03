@@ -91,7 +91,7 @@ class _GraphicState extends State<Graphic> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                    borderRadius: const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                 child: Column(
                   children: [
                     Column(
