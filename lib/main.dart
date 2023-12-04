@@ -3,8 +3,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:zeromath/ad_state.dart';
 import 'package:zeromath/apps/home_page.dart';
-
-import "constants/cores.constants.dart" as cores;
+import 'package:zeromath/themes/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: cores.primaryColor, background: cores.background),
-        useMaterial3: true,
-      ),
+      title: 'Zer0Math',
+      theme: lightMode,
+      darkTheme: darkMode,
       home: const HomePage(),
     );
   }

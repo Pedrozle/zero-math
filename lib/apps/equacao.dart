@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:zeromath/ad_state.dart';
 import 'package:zeromath/apps/equacao_details.dart';
 import 'package:zeromath/models/details_data.dart';
@@ -161,8 +162,8 @@ class _EquacaoState extends State<Equacao> {
                     ElevatedButton(
                       style: TextButton.styleFrom(
                           elevation: 1,
-                          foregroundColor: Colors.black,
-                          backgroundColor: cores.babyBlue,
+                          foregroundColor: Colors.white,
+                          backgroundColor: cores.accentColorLight,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                       onPressed: () async {
                         DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
@@ -183,7 +184,7 @@ class _EquacaoState extends State<Equacao> {
                 padding: const EdgeInsets.only(left: 24, right: 8),
                 child: Text(
                   definicao,
-                  style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54),
+                  style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
               ),
               const SizedBox(
@@ -193,9 +194,10 @@ class _EquacaoState extends State<Equacao> {
                   width: double.infinity,
                   margin: const EdgeInsets.only(top: 15),
                   padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(
-                      color: cores.babyBlue,
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius:
+                          const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                   child: Column(
                     children: [
                       const SizedBox(
@@ -206,14 +208,14 @@ class _EquacaoState extends State<Equacao> {
                           Expanded(
                               child: TextFormField(
                             controller: maxRepsController,
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                                fillColor: Colors.white,
-                                filled: true,
-                                labelText: 'Nº max de iterações',
-                                hintText: "25",
-                                labelStyle: TextStyle(color: Colors.black)),
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                              fillColor: Theme.of(context).colorScheme.background,
+                              filled: true,
+                              labelText: 'Nº max de iterações',
+                              hintText: "25",
+                            ),
                           )),
                           const SizedBox(
                             width: 8,
@@ -221,14 +223,14 @@ class _EquacaoState extends State<Equacao> {
                           Expanded(
                               child: TextFormField(
                             controller: precisaoController,
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                                fillColor: Colors.white,
-                                filled: true,
-                                labelText: 'Precisão do Cálculo',
-                                hintText: "0.001",
-                                labelStyle: TextStyle(color: Colors.black)),
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                              fillColor: Theme.of(context).colorScheme.background,
+                              filled: true,
+                              labelText: 'Precisão do Cálculo',
+                              hintText: "0.001",
+                            ),
                           )),
                         ],
                       ),
@@ -237,14 +239,14 @@ class _EquacaoState extends State<Equacao> {
                       ),
                       TextFormField(
                         controller: equacaoController,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'Equação',
-                            hintText: "x^2 + x-6",
-                            labelStyle: TextStyle(color: Colors.black)),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                          fillColor: Theme.of(context).colorScheme.background,
+                          filled: true,
+                          labelText: 'Equação',
+                          hintText: "x^2 + x-6",
+                        ),
                       ),
                       const SizedBox(
                         height: 8,
@@ -254,21 +256,21 @@ class _EquacaoState extends State<Equacao> {
                             child: TextFormField(
                           controller: aController,
                           decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText: widget.typeScreen == 4
-                                  ? 'Equação Derivada'
-                                  : widget.typeScreen == 5
-                                      ? 'Função de Iteração'
-                                      : 'Limite  inicial',
-                              hintText: widget.typeScreen == 4
-                                  ? '2*x + 1'
-                                  : widget.typeScreen == 5
-                                      ? '6-x^2'
-                                      : '-5',
-                              labelStyle: const TextStyle(color: Colors.black)),
+                            border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                            fillColor: Theme.of(context).colorScheme.background,
+                            filled: true,
+                            labelText: widget.typeScreen == 4
+                                ? 'Equação Derivada'
+                                : widget.typeScreen == 5
+                                    ? 'Função de Iteração'
+                                    : 'Limite  inicial',
+                            hintText: widget.typeScreen == 4
+                                ? '2*x + 1'
+                                : widget.typeScreen == 5
+                                    ? '6-x^2'
+                                    : '-5',
+                          ),
                         )),
                         const SizedBox(
                           width: 8,
@@ -277,18 +279,18 @@ class _EquacaoState extends State<Equacao> {
                             child: TextFormField(
                           controller: bController,
                           decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:
-                                  widget.typeScreen == 4 || widget.typeScreen == 5 ? 'Chute Inicial' : 'Limite Final',
-                              hintText: widget.typeScreen == 4
-                                  ? "2.5"
-                                  : widget.typeScreen == 5
-                                      ? '1.5'
-                                      : "5",
-                              labelStyle: const TextStyle(color: Colors.black)),
+                            border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
+                            fillColor: Theme.of(context).colorScheme.background,
+                            filled: true,
+                            labelText:
+                                widget.typeScreen == 4 || widget.typeScreen == 5 ? 'Chute Inicial' : 'Limite Final',
+                            hintText: widget.typeScreen == 4
+                                ? "2.5"
+                                : widget.typeScreen == 5
+                                    ? '1.5'
+                                    : "5",
+                          ),
                         ))
                       ]),
                       const SizedBox(
@@ -301,7 +303,7 @@ class _EquacaoState extends State<Equacao> {
                             style: TextButton.styleFrom(
                                 elevation: 5,
                                 foregroundColor: Colors.white,
-                                backgroundColor: cores.primaryColor,
+                                backgroundColor: cores.accentColorLight,
                                 padding: const EdgeInsets.all(15),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                             onPressed: () async {
@@ -412,8 +414,9 @@ class _EquacaoState extends State<Equacao> {
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                            color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.all(Radius.circular(15.0))),
                         child: !vazio
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -421,7 +424,9 @@ class _EquacaoState extends State<Equacao> {
                                   if (widget.typeScreen == 2)
                                     const Text(
                                         "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
-                                  Text("A equação fornecida contém ${raizes.length} raízes:"),
+                                  Text(
+                                    "A equação fornecida contém ${raizes.length} raízes:",
+                                  ),
                                   raizes.isNotEmpty
                                       ? SizedBox(
                                           height: 50,
@@ -433,7 +438,9 @@ class _EquacaoState extends State<Equacao> {
                                                       padding: const EdgeInsets.all(12),
                                                       child: Text(
                                                         e.toStringAsFixed(2),
-                                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                                        style: const TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
                                                       ),
                                                     ))
                                                 .toList(),
@@ -445,30 +452,34 @@ class _EquacaoState extends State<Equacao> {
                                   ),
                                   SizedBox(
                                     width: double.infinity,
-                                    child: SfCartesianChart(
-                                        primaryXAxis: NumericAxis(crossesAt: 0),
-                                        primaryYAxis: NumericAxis(crossesAt: 0),
-                                        title: ChartTitle(text: title),
-                                        tooltipBehavior: _tooltipBehavior,
-                                        zoomPanBehavior: _zoomPanBehavior,
-                                        crosshairBehavior: _crooshairBehavior,
-                                        series: <ChartSeries>[
-                                          LineSeries<EquacaoData, double>(
-                                              dataSource: dataGraph,
-                                              xValueMapper: (EquacaoData data, _) => data.x,
-                                              yValueMapper: (EquacaoData data, _) => data.y,
-                                              animationDuration: 5000,
-                                              // Enable data label
-                                              dataLabelSettings: const DataLabelSettings(isVisible: true)),
-                                          ScatterSeries<EquacaoData, double>(
-                                              dataSource: dataRaizes,
-                                              xValueMapper: (EquacaoData data, _) => data.x,
-                                              yValueMapper: (EquacaoData data, _) => 0,
-                                              animationDuration: 1000,
-                                              // Enable data label
-                                              dataLabelSettings:
-                                                  const DataLabelSettings(isVisible: true, useSeriesColor: true)),
-                                        ]),
+                                    child: SfTheme(
+                                      data: SfThemeData(
+                                          chartThemeData: SfChartThemeData(plotAreaBackgroundColor: Colors.white)),
+                                      child: SfCartesianChart(
+                                          primaryXAxis: NumericAxis(crossesAt: 0),
+                                          primaryYAxis: NumericAxis(crossesAt: 0),
+                                          title: ChartTitle(text: title),
+                                          tooltipBehavior: _tooltipBehavior,
+                                          zoomPanBehavior: _zoomPanBehavior,
+                                          crosshairBehavior: _crooshairBehavior,
+                                          series: <ChartSeries>[
+                                            LineSeries<EquacaoData, double>(
+                                                dataSource: dataGraph,
+                                                xValueMapper: (EquacaoData data, _) => data.x,
+                                                yValueMapper: (EquacaoData data, _) => data.y,
+                                                animationDuration: 5000,
+                                                // Enable data label
+                                                dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                                            ScatterSeries<EquacaoData, double>(
+                                                dataSource: dataRaizes,
+                                                xValueMapper: (EquacaoData data, _) => data.x,
+                                                yValueMapper: (EquacaoData data, _) => 0,
+                                                animationDuration: 1000,
+                                                // Enable data label
+                                                dataLabelSettings:
+                                                    const DataLabelSettings(isVisible: true, useSeriesColor: true)),
+                                          ]),
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 8,

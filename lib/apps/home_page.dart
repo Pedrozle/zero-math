@@ -25,9 +25,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Spacer(),
               Container(
-                  decoration: const BoxDecoration(
-                      color: cores.babyBlue,
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius:
+                          const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                   padding: const EdgeInsets.only(top: 12, left: 8, right: 8),
                   alignment: Alignment.centerLeft,
                   child: Row(
@@ -40,8 +41,8 @@ class _HomePageState extends State<HomePage> {
                       ElevatedButton(
                         style: TextButton.styleFrom(
                             elevation: 1,
-                            foregroundColor: Colors.black,
-                            backgroundColor: cores.background,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.accentColorLight,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                         onPressed: () async {
                           Navigator.push(
@@ -56,9 +57,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                  color: cores.babyBlue,
-                ),
+                color: Theme.of(context).colorScheme.secondary,
                 child: Column(
                   children: [
                     Column(
@@ -73,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                               style: TextButton.styleFrom(
                                   elevation: 5,
                                   foregroundColor: Colors.white,
-                                  backgroundColor: cores.primaryColor,
+                                  backgroundColor: cores.accentColorLight,
                                   padding: const EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                               onPressed: () async {
