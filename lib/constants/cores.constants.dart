@@ -12,4 +12,4 @@ const Color accentColorLight = Color.fromARGB(255, 40, 87, 252);
 
 const Color mainColorDark = Color.fromARGB(255, 23, 24, 24);
 const Color secondaryColorDark = Color.fromARGB(255, 56, 60, 74);
-const Color accentColorDark = Color.fromARGB(255, 124, 64, 252);
+const Color accentColorDark = Color.fromARGB(255, 40, 87, 255);
