@@ -12,4 +12,4 @@ const Color background = Color.fromARGB(255, 239, 247, 255);
 
 const Color babyBlueDark = Color.fromARGB(255, 16, 51, 83);
 const Color primaryColorDark = Color(0xff285DFC);
-const Color backgroundDark = Color.fromARGB(255, 26, 27, 27);
+const Color backgroundDark = Color.fromARGB(255, 23, 24, 24);
