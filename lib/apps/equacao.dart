@@ -162,8 +162,8 @@ class _EquacaoState extends State<Equacao> {
                     ElevatedButton(
                       style: TextButton.styleFrom(
                           elevation: 1,
-                          foregroundColor: Colors.black,
-                          backgroundColor: cores.background,
+                          foregroundColor: Colors.white,
+                          backgroundColor: cores.accentColorLight,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                       onPressed: () async {
                         DetailsData data = DetailsData(widget.typeScreen, equacao, dataGraph, dataRaizes, tabela);
@@ -211,7 +211,7 @@ class _EquacaoState extends State<Equacao> {
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Theme.of(context).colorScheme.tertiary,
+                              fillColor: Theme.of(context).colorScheme.background,
                               filled: true,
                               labelText: 'Nº max de iterações',
                               hintText: "25",
@@ -226,7 +226,7 @@ class _EquacaoState extends State<Equacao> {
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                              fillColor: Theme.of(context).colorScheme.tertiary,
+                              fillColor: Theme.of(context).colorScheme.background,
                               filled: true,
                               labelText: 'Precisão do Cálculo',
                               hintText: "0.001",
@@ -242,7 +242,7 @@ class _EquacaoState extends State<Equacao> {
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                          fillColor: Theme.of(context).colorScheme.tertiary,
+                          fillColor: Theme.of(context).colorScheme.background,
                           filled: true,
                           labelText: 'Equação',
                           hintText: "x^2 + x-6",
@@ -258,7 +258,7 @@ class _EquacaoState extends State<Equacao> {
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                            fillColor: Theme.of(context).colorScheme.tertiary,
+                            fillColor: Theme.of(context).colorScheme.background,
                             filled: true,
                             labelText: widget.typeScreen == 4
                                 ? 'Equação Derivada'
@@ -281,7 +281,7 @@ class _EquacaoState extends State<Equacao> {
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                            fillColor: Theme.of(context).colorScheme.tertiary,
+                            fillColor: Theme.of(context).colorScheme.background,
                             filled: true,
                             labelText:
                                 widget.typeScreen == 4 || widget.typeScreen == 5 ? 'Chute Inicial' : 'Limite Final',
@@ -303,7 +303,7 @@ class _EquacaoState extends State<Equacao> {
                             style: TextButton.styleFrom(
                                 elevation: 5,
                                 foregroundColor: Colors.white,
-                                backgroundColor: cores.primaryColor,
+                                backgroundColor: cores.accentColorLight,
                                 padding: const EdgeInsets.all(15),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                             onPressed: () async {
@@ -414,8 +414,9 @@ class _EquacaoState extends State<Equacao> {
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                            color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.all(Radius.circular(15.0))),
                         child: !vazio
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

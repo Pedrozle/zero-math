@@ -35,7 +35,7 @@ class _ZeroDetails extends State<ZeroDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Zero de Funções"),
       ),
       body: SafeArea(

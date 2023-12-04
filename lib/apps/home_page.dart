@@ -26,8 +26,9 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               Container(
                   decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius:
+                          const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                   padding: const EdgeInsets.only(top: 12, left: 8, right: 8),
                   alignment: Alignment.centerLeft,
                   child: Row(
@@ -40,8 +41,8 @@ class _HomePageState extends State<HomePage> {
                       ElevatedButton(
                         style: TextButton.styleFrom(
                             elevation: 1,
-                            foregroundColor: Colors.black,
-                            backgroundColor: cores.background,
+                            foregroundColor: Colors.white,
+                            backgroundColor: cores.accentColorLight,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                         onPressed: () async {
                           Navigator.push(
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                               style: TextButton.styleFrom(
                                   elevation: 5,
                                   foregroundColor: Colors.white,
-                                  backgroundColor: cores.primaryColor,
+                                  backgroundColor: cores.accentColorLight,
                                   padding: const EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                               onPressed: () async {

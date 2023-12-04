@@ -69,7 +69,7 @@ class _GraphicState extends State<Graphic> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
       body: Align(
@@ -91,7 +91,8 @@ class _GraphicState extends State<Graphic> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
+                    borderRadius:
+                        const BorderRadius.only(topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0))),
                 child: Column(
                   children: [
                     Column(
@@ -105,7 +106,7 @@ class _GraphicState extends State<Graphic> {
                                   style: TextButton.styleFrom(
                                       elevation: 5,
                                       foregroundColor: Colors.white,
-                                      backgroundColor: cores.primaryColor,
+                                      backgroundColor: cores.accentColorLight,
                                       padding: const EdgeInsets.all(5),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                                   onPressed: () async {
@@ -147,7 +148,7 @@ class _GraphicState extends State<Graphic> {
                                 decoration: InputDecoration(
                                   border: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                                  fillColor: Theme.of(context).colorScheme.tertiary,
+                                  fillColor: Theme.of(context).colorScheme.background,
                                   filled: true,
                                   labelText: 'Equação',
                                   hintText: "x^2 + x-6",
@@ -162,8 +163,9 @@ class _GraphicState extends State<Graphic> {
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.all(8),
-                          decoration: const BoxDecoration(
-                              color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: const BorderRadius.all(Radius.circular(15.0))),
                           child: !vazio
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +211,7 @@ class _GraphicState extends State<Graphic> {
                               style: TextButton.styleFrom(
                                   elevation: 5,
                                   foregroundColor: Colors.white,
-                                  backgroundColor: cores.primaryColor,
+                                  backgroundColor: cores.accentColorLight,
                                   padding: const EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                               onPressed: () async {
@@ -234,7 +236,7 @@ class _GraphicState extends State<Graphic> {
                               style: TextButton.styleFrom(
                                   elevation: 5,
                                   foregroundColor: Colors.white,
-                                  backgroundColor: cores.primaryColor,
+                                  backgroundColor: cores.accentColorLight,
                                   padding: const EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                               onPressed: () async {
