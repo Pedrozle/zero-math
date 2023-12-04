@@ -15,7 +15,7 @@ jobs:
           java-version: '11'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.18.x'
+          channel: 'stable' # or: 'beta', 'dev', 'master' (or 'main')
       - run: flutter pub get
       - run: flutter build appbundle --debug
       - name: Push to Releases
