@@ -426,7 +426,6 @@ class _EquacaoState extends State<Equacao> {
                                         "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
                                   Text(
                                     "A equação fornecida contém ${raizes.length} raízes:",
-                                    style: const TextStyle(color: Colors.black),
                                   ),
                                   raizes.isNotEmpty
                                       ? SizedBox(
@@ -441,7 +440,6 @@ class _EquacaoState extends State<Equacao> {
                                                         e.toStringAsFixed(2),
                                                         style: const TextStyle(
                                                           fontWeight: FontWeight.bold,
-                                                          color: Colors.black,
                                                         ),
                                                       ),
                                                     ))
