@@ -50,7 +50,7 @@ class _ZeroDetails extends State<ZeroDetails> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "v1.0.1",
+                  "v1.0.2",
                   style: TextStyle(fontSize: 12, color: Colors.black54),
                 ),
               ]),
