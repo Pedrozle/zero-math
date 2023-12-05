@@ -421,7 +421,7 @@ class _EquacaoState extends State<Equacao> {
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (widget.typeScreen == 2)
+                                  if (widget.typeScreen == 4)
                                     const Text(
                                         "O método de Newton-Raphson encontra somente uma raíz a partir da aproximação inicial!"),
                                   Text(
