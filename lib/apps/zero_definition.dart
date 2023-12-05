@@ -43,11 +43,15 @@ class _ZeroDetails extends State<ZeroDetails> {
           children: [
             const Spacer(),
             const Padding(
-              padding: EdgeInsets.only(left: 8),
+              padding: EdgeInsets.only(left: 8, right: 8),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Text(
                   "Zero de Funções",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "v1.0.2",
+                  style: TextStyle(fontSize: 12, color: Colors.black54),
                 ),
               ]),
             ),
