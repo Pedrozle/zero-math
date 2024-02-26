@@ -24,6 +24,10 @@ Este é um projeto [Flutter](https://docs.flutter.dev/), se necessitar de ajuda 
 | ------------------------------------------------------ | ------------------------------------------------------ |
 | <img src="assets/img/readme/metodos.png" width="50%"/> | <img src="assets/img/readme/equacao.png" width="50%"/> |
 
+## Licença
+
+Este projeto está licenciado sob a licença [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
 ## Referências
 
 [Método da bisseção](http://www.dma.uem.br/kit/calculo-numerico-2/kit-bisseccao.pdf)
