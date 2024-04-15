@@ -67,7 +67,7 @@ class _GraphicState extends State<Graphic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
@@ -148,7 +148,7 @@ class _GraphicState extends State<Graphic> {
                                 decoration: InputDecoration(
                                   border: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(15)), borderSide: BorderSide.none),
-                                  fillColor: Theme.of(context).colorScheme.background,
+                                  fillColor: Theme.of(context).colorScheme.surface,
                                   filled: true,
                                   labelText: 'Equação',
                                   hintText: "x^2 + x-6",
@@ -164,7 +164,7 @@ class _GraphicState extends State<Graphic> {
                           width: double.infinity,
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).colorScheme.surface,
                               borderRadius: const BorderRadius.all(Radius.circular(15.0))),
                           child: !vazio
                               ? Column(

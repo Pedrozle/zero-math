@@ -177,11 +177,11 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                                       color: Colors.black54,
                                     ),
                                     headingRowColor:
-                                        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                                        WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
                                       return Colors.black.withOpacity(0.3);
                                     }),
                                     border:
-                                        TableBorder.symmetric(inside: const BorderSide(width: 1, color: Colors.black)),
+                                        const TableBorder.symmetric(inside: BorderSide(width: 1, color: Colors.black)),
                                     columnSpacing: 20.0,
                                     columns: [
                                       DataColumn(label: Text(widget.data.tabela[2][0])),
@@ -194,9 +194,9 @@ class _EquacaoDetails extends State<EquacaoDetails> {
                                       for (int i = 3; i < widget.data.tabela.length; i++)
                                         DataRow(
                                             color:
-                                                MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                                                WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
                                               // All rows will have the same selected color.
-                                              if (states.contains(MaterialState.selected)) {
+                                              if (states.contains(WidgetState.selected)) {
                                                 return Theme.of(context).colorScheme.primary.withOpacity(0.08);
                                               }
                                               // Even rows will have a grey color.
