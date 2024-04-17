@@ -89,9 +89,9 @@ flutter:
   fonts:
       - family: Palanquin
         fonts:
-            - asset: assets/fonts/Palanquin-Regular.ttf
-            - asset: assets/fonts/Palanquin-Light.ttf
-            - asset: assets/fonts/Palanquin-Bold.ttf
+            - asset: assets/fonts/WorkSans-Regular.ttf
+            - asset: assets/fonts/WorkSans-Thin.ttf
+            - asset: assets/fonts/WorkSans-Bold.ttf
               weight: 700
   #
   # For details regarding fonts from package dependencies,
