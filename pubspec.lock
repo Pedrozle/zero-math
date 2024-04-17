@@ -75,22 +75,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  google_mobile_ads:
-    dependency: "direct main"
-    description:
-      name: google_mobile_ads
-      sha256: f07d4e2ebf56181e8dd18ee810607e84aeac8add5251bb44c1c886af47ff021a
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0"
   intl:
     dependency: transitive
     description:
       name: intl
-      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.0"
+    version: "0.18.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -171,22 +163,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
-  plugin_platform_interface:
-    dependency: transitive
-    description:
-      name: plugin_platform_interface
-      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.8"
   provider:
     dependency: "direct main"
     description:
       name: provider
-      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
+      sha256: "9a96a0a19b594dbc5bf0f1f27d2bc67d5f95957359b461cd9feb44ed6ae75096"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.2"
+    version: "6.1.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -228,18 +212,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: f3327077c4816573895b15545ea85b12c6a6cab7f8c2cde1a7eec05c36bfb432
+      sha256: "97142a0192f6fd44f299c30c0b97399ab503de17ef3860e560078bb6be3903de"
       url: "https://pub.dev"
     source: hosted
-    version: "25.1.40"
+    version: "23.2.7"
   syncfusion_flutter_core:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_core
-      sha256: "8e19260d292ed77e1cbd4ee1baafb3c9486079cad856e7891478131d25076039"
+      sha256: a2427697bfad5b611db78ea4c4daef82d3350b83c729a8dc37959662a31547f9
       url: "https://pub.dev"
     source: hosted
-    version: "25.1.40"
+    version: "23.2.7"
   term_glyph:
     dependency: transitive
     description:
@@ -272,38 +256,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.1"
-  webview_flutter:
-    dependency: transitive
-    description:
-      name: webview_flutter
-      sha256: "25e1b6e839e8cbfbd708abc6f85ed09d1727e24e08e08c6b8590d7c65c9a8932"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.7.0"
-  webview_flutter_android:
-    dependency: transitive
-    description:
-      name: webview_flutter_android
-      sha256: f038ee2fae73b509dde1bc9d2c5a50ca92054282de17631a9a3d515883740934
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.16.0"
-  webview_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: webview_flutter_platform_interface
-      sha256: d937581d6e558908d7ae3dc1989c4f87b786891ab47bb9df7de548a151779d8d
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.10.0"
-  webview_flutter_wkwebview:
-    dependency: transitive
-    description:
-      name: webview_flutter_wkwebview
-      sha256: f12f8d8a99784b863e8b85e4a9a5e3cf1839d6803d2c0c3e0533a8f3c5a992a7
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.13.0"
 sdks:
-  dart: ">=3.5.0-66.0.dev <4.0.0"
+  dart: ">=3.5.0-69.0.dev <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
