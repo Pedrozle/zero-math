@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zeromath/components/my_button.dart';
 import 'package:zeromath/pages/graphic.dart';
+import 'package:zeromath/pages/info.dart';
 import 'package:zeromath/providers/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const GraphicPage()),
+                                    builder: (context) => const InfoPage()),
                               )
                             },
                         label: "O que é?")
