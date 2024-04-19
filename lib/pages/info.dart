@@ -30,7 +30,7 @@ class _InfoPageState extends State<InfoPage> {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "v1.0.2",
+                      "v1.0.3",
                       style: TextStyle(fontSize: 12),
                     ),
                   ],
