@@ -1,6 +1,6 @@
 import 'package:math_expressions/math_expressions.dart';
 import 'package:zeromath/models/equacao.dart';
-import 'package:zeromath/services/equacao_data.dart';
+import 'package:zeromath/models/equacao_data.dart';
 
 class Metodos {
   List<double> linspace(double inicio, double fim, int qtd) {

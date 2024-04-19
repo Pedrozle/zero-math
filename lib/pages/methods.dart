@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zeromath/components/my_button.dart';
+import 'package:zeromath/pages/equation.dart';
 import '../constants/cores.constants.dart' as cores;
 
 class MethodsPage extends StatefulWidget {
@@ -55,7 +56,12 @@ class _MethodsPageState extends State<MethodsPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         radius: 10,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EquationPage(type: 1)));
+                        },
                         label: "Método da Bisseção"),
                   ),
                   const SizedBox(
@@ -72,7 +78,12 @@ class _MethodsPageState extends State<MethodsPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         radius: 10,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EquationPage(type: 2)));
+                        },
                         label: "Método da Secante"),
                   ),
                   const SizedBox(
@@ -89,7 +100,12 @@ class _MethodsPageState extends State<MethodsPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         radius: 10,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EquationPage(type: 3)));
+                        },
                         label: "Método da Falsa Posição"),
                   ),
                   const SizedBox(
@@ -106,7 +122,12 @@ class _MethodsPageState extends State<MethodsPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         radius: 10,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EquationPage(type: 4)));
+                        },
                         label: "Método da Newton-Raphson"),
                   ),
                   const SizedBox(
@@ -123,7 +144,12 @@ class _MethodsPageState extends State<MethodsPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         radius: 10,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EquationPage(type: 5)));
+                        },
                         label: "Método da Ponto Fixo"),
                   ),
                 ],

@@ -5,7 +5,7 @@ import 'package:zeromath/components/my_button.dart';
 import 'package:zeromath/components/my_text_input.dart';
 import 'package:zeromath/models/equacao.dart';
 import 'package:zeromath/pages/methods.dart';
-import 'package:zeromath/services/equacao_data.dart';
+import 'package:zeromath/models/equacao_data.dart';
 import 'package:zeromath/services/metodos.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -150,6 +150,7 @@ class _GraphicPageState extends State<GraphicPage> {
             child: Column(
               children: [
                 TextInputComponent(
+                    label: "",
                     onChange: (value) => {
                           setState(() {
                             vazio = true;

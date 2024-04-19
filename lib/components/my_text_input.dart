@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class TextInputComponent extends StatefulWidget {
   const TextInputComponent(
-      {super.key, required this.controller, required this.hint, this.onChange});
+      {super.key,
+      required this.controller,
+      required this.hint,
+      required this.label,
+      this.onChange});
 
   final String hint;
+  final String label;
   final TextEditingController controller;
   final Function(String)? onChange;
 
@@ -28,6 +33,7 @@ class _TextInputComponentPadraoState extends State<TextInputComponent> {
       decoration: InputDecoration(
           filled: true,
           hintText: widget.hint,
+          label: Text(widget.label),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(10),

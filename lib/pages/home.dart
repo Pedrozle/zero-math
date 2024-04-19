@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ButtonComponent(
+                        radius: 10,
                         onClick: () => {
                               Navigator.push(
                                 context,
@@ -77,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                         child: ButtonComponent(
+                            radius: 10,
                             onClick: () => {
                                   Navigator.push(
                                     context,
