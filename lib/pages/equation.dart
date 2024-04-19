@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -7,6 +6,7 @@ import 'package:zeromath/components/my_text_input.dart';
 import 'package:zeromath/models/details_data.dart';
 import 'package:zeromath/models/equacao.dart';
 import 'package:zeromath/models/equacao_data.dart';
+import 'package:zeromath/pages/equation_details.dart';
 import 'package:zeromath/services/metodos.dart';
 
 class EquationPage extends StatefulWidget {
@@ -355,13 +355,13 @@ class _EquationPageState extends State<EquationPage> {
                         onClick: () {
                           DetailsData data = DetailsData(widget.type, equacao,
                               dataGraph, dataRaizes, tabela);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => EquacaoDetails(
-                          //             data: data,
-                          //           )),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EquacaoDetails(
+                                      data: data,
+                                    )),
+                          );
                         },
                         label: "Exibir passo a passo")
                 ],
