@@ -28,7 +28,6 @@ class _TextInputComponentPadraoState extends State<TextInputComponent> {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: widget.onChange,
-      autofocus: true,
       controller: widget.controller,
       decoration: InputDecoration(
           filled: true,
