@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zeromath/components/my_button.dart';
 import 'package:zeromath/components/my_text_input.dart';
 import 'package:zeromath/models/equacao.dart';
+import 'package:zeromath/pages/methods.dart';
 import 'package:zeromath/services/equacao_data.dart';
 import 'package:zeromath/services/metodos.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -183,7 +183,14 @@ class _GraphicPageState extends State<GraphicPage> {
                     Expanded(
                       child: ButtonComponent(
                           radius: 10,
-                          onClick: () => {},
+                          onClick: () => {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MethodsPage()),
+                                )
+                              },
                           label: "Aplicar os métodos"),
                     ),
                   ],
