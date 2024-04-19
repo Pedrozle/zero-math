@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zeromath/components/my_button.dart';
 import 'package:zeromath/pages/graphic.dart';
 import 'package:zeromath/providers/theme_provider.dart';
 
@@ -53,15 +54,15 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    ElevatedButton(
-                        onPressed: () => {
+                    ButtonComponent(
+                        onClick: () => {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const GraphicPage()),
                               )
                             },
-                        child: const Text("O que é?"))
+                        label: "O que é?")
                   ],
                 ),
               ),
@@ -74,8 +75,8 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: ElevatedButton(
-                            onPressed: () => {
+                        child: ButtonComponent(
+                            onClick: () => {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                                             const GraphicPage()),
                                   )
                                 },
-                            child: const Text("Iniciar")),
+                            label: "Iniciar"),
                       ),
                       const SizedBox(
                         width: 5,
