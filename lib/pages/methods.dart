@@ -31,6 +31,7 @@ class _MethodsPageState extends State<MethodsPage> {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             Container(
@@ -60,7 +61,8 @@ class _MethodsPageState extends State<MethodsPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EquationPage(type: 1)));
+                                  builder: (context) =>
+                                      const EquationPage(type: 1)));
                         },
                         label: "Método da Bisseção"),
                   ),
@@ -82,7 +84,8 @@ class _MethodsPageState extends State<MethodsPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EquationPage(type: 2)));
+                                  builder: (context) =>
+                                      const EquationPage(type: 2)));
                         },
                         label: "Método da Secante"),
                   ),
@@ -104,7 +107,8 @@ class _MethodsPageState extends State<MethodsPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EquationPage(type: 3)));
+                                  builder: (context) =>
+                                      const EquationPage(type: 3)));
                         },
                         label: "Método da Falsa Posição"),
                   ),
@@ -126,7 +130,8 @@ class _MethodsPageState extends State<MethodsPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EquationPage(type: 4)));
+                                  builder: (context) =>
+                                      const EquationPage(type: 4)));
                         },
                         label: "Método da Newton-Raphson"),
                   ),
@@ -148,7 +153,8 @@ class _MethodsPageState extends State<MethodsPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EquationPage(type: 5)));
+                                  builder: (context) =>
+                                      const EquationPage(type: 5)));
                         },
                         label: "Método da Ponto Fixo"),
                   ),
