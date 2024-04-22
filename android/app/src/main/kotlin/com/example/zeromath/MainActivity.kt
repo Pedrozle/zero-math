@@ -1,4 +1,4 @@
-package com.example.zeromath
+package com.oresoftware.zeromath
 
 import io.flutter.embedding.android.FlutterActivity
 

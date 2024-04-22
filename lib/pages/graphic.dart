@@ -150,7 +150,7 @@ class _GraphicPageState extends State<GraphicPage> {
             child: Column(
               children: [
                 TextInputComponent(
-                    label: "",
+                    label: "Equação",
                     onChange: (value) => {
                           setState(() {
                             vazio = true;
