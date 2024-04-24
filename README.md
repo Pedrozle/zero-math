@@ -18,7 +18,7 @@ Este é um projeto [Flutter](https://docs.flutter.dev/), se necessitar de ajuda 
 
 | Página Inicial                                           | Tela Gráfico                                            |
 | -------------------------------------------------------- | ------------------------------------------------------- |
-| <img src="assets/img/readme/homepage.png" width="70%" /> | <img src="assets/img/readme/grafico.png"  width="20%"/> |
+| <img src="assets/img/readme/homepage.png" width="50%" /> | <img src="assets/img/readme/grafico.png"  width="50%"/> |
 
 | Tela Métodos                                           | Tela Equações                                          |
 | ------------------------------------------------------ | ------------------------------------------------------ |
