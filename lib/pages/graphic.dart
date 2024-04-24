@@ -37,36 +37,45 @@ class _GraphicPageState extends State<GraphicPage> {
         ? const SizedBox(
             height: 10,
           )
-        : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 8,
+        : Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(10),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: SfTheme(
-                  data: SfThemeData(
-                      chartThemeData: SfChartThemeData(
-                          plotAreaBackgroundColor:
-                              Theme.of(context).colorScheme.surface)),
-                  child: SfCartesianChart(
-                      primaryXAxis: const NumericAxis(crossesAt: 0),
-                      primaryYAxis: const NumericAxis(crossesAt: 0),
-                      title: const ChartTitle(text: "Gráfico da Equação"),
-                      series: <CartesianSeries>[
-                        LineSeries<EquacaoData, double>(
-                            dataSource: dataGraph,
-                            xValueMapper: (EquacaoData data, _) => data.x,
-                            yValueMapper: (EquacaoData data, _) => data.y,
-                            animationDuration: 5000,
-                            // Enable data label
-                            dataLabelSettings:
-                                const DataLabelSettings(isVisible: true)),
-                      ]),
-                ),
-              )
-            ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: SfTheme(
+                      data: SfThemeData(
+                          chartThemeData: SfChartThemeData(
+                              plotAreaBackgroundColor:
+                                  Theme.of(context).colorScheme.surface)),
+                      child: SfCartesianChart(
+                          primaryXAxis: const NumericAxis(crossesAt: 0),
+                          primaryYAxis: const NumericAxis(crossesAt: 0),
+                          title: const ChartTitle(text: "Gráfico da Equação"),
+                          series: <CartesianSeries>[
+                            LineSeries<EquacaoData, double>(
+                                dataSource: dataGraph,
+                                xValueMapper: (EquacaoData data, _) => data.x,
+                                yValueMapper: (EquacaoData data, _) => data.y,
+                                animationDuration: 5000,
+                                // Enable data label
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true)),
+                          ]),
+                    ),
+                  )
+                ],
+              ),
+            ),
           );
   }
 
@@ -101,6 +110,9 @@ class _GraphicPageState extends State<GraphicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Gráfico"),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

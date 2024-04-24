@@ -160,7 +160,7 @@ class _EquationPageState extends State<EquationPage> {
                     ? Column(
                         children: [
                           Text(
-                            "A equação fornecida contém ${raizes.length} raízes:",
+                            "A equação fornecida contém ${raizes.length} ${raizes.length > 1 ? 'raízes' : 'raiz'}:",
                           ),
                           SizedBox(
                             height: 50,
